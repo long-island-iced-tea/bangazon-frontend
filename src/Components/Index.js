@@ -1,27 +1,60 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-
-import authRequests from  '../../firebaseRequests/auth';
-
-import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
   render () {
 
-
     return (
-      <h1>INDEX</h1>
-      <ul>
-        <li class="">Customers</li>
-        <li class="">Employees</li>
-        <li class="">Products</li>
-        <li class="">Computers</li>
-        <li class="">Departments</li>
-        <li class="">Orders</li>
-        <li class="">Payment Types</li>
-        <li class="">Product Types</li>
-        <li class="">Training Programs</li>
-      </ul>
+      <div>
+        <h1>INDEX</h1>
+        <ul class="navbar">
+          <li>
+            <Link to="/Customers">
+              Customers
+            </Link>
+          </li>
+          <li>
+            <Link to="/Employees">
+              Employees
+            </Link>
+          </li>
+          <li>
+            <Link to="/Products">
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link to="/Computers">
+              Computers
+            </Link>
+          </li>
+          <li>
+            <Link to="/Departments">
+              Departments
+            </Link>
+          </li>
+          <li>
+            <Link to="/Orders">
+              Orders
+            </Link>
+          </li>
+          <li>
+            <Link to="PaymentTypes">
+            Payment Types
+            </Link>
+          </li>
+          <li>
+            <Link to="ProductTypes">
+            Product Types
+            </Link>
+          </li>
+          <li>
+            <Link to="TrainingPrograms">
+            Training Programs
+            </Link>
+          </li>
+        </ul>
+      </div>
     );
   }
 }

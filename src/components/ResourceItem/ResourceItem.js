@@ -9,8 +9,8 @@ class ResourceItem extends React.Component {
     return (
       <tr className='ResourceItem'>
         {itemProps}
-        <td>EDIT</td>
-        <td>DELETE</td>
+        <td onClick={this.props.editFunc}>EDIT</td>
+        <td onClick={this.props.deleteFunc}>DELETE</td>
       </tr>
     );
   }

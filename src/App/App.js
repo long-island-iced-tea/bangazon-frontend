@@ -13,7 +13,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="row">
             <div className="col-3 sidebar-container">
-              <Sidebar />
+              
             </div>
             <div className="col-9 resource-page-container">
               <Switch>

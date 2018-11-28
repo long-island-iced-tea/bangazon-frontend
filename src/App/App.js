@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import Sidebar from '../Components/Sidebar/Sidebar';
 import './App.css';
 
 class App extends Component {
@@ -11,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <div className="row">
+          <div className="row container-fluid">
             <div className="col-3 sidebar-container">
               
             </div>

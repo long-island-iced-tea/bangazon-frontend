@@ -19,10 +19,12 @@ class ResourceList extends React.Component {
       return null;
     }
 
+    // Create the header row from the keys of the first object
     const tableHeaders = Object.keys(resources[0]).map(p => {
       return (<th key={p}>{p}</th>);
     });
 
+    // Create ResourceItem rows
     const resourceItems = resources.map(r => {
       return (<ResourceItem key={r.id} item={r} editFunc={editFunc} deleteFunc={deleteFunc} />);
     });

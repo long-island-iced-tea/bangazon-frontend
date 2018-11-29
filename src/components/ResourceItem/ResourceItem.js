@@ -12,16 +12,20 @@ class ResourceItem extends React.Component {
   }
 
   render () {
-    const itemProps = Object.values(this.props.item).map(v => {
+    const {item, editFunc, deleteFunc} = this.props;
+
+    // Create table data from the values of the item
+    const itemProps = Object.values(item).map(v => {
       return (<td key={v}>{v}</td>);
     });
+
     return (
       <tr className='ResourceItem'>
         {itemProps}
-        <td onClick={this.props.editFunc}>
+        <td onClick={editFunc}>
           <i class="fas fa-edit"></i>
         </td>
-        <td onClick={this.props.deleteFunc}>
+        <td onClick={deleteFunc}>
           <i class="fas fa-minus-circle"></i>
         </td>
       </tr>

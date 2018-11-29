@@ -1,16 +1,27 @@
 import React from 'react';
 import './ResourceList.css';
 import ResourceItem from '../ResourceItem/ResourceItem';
+import PropTypes from 'prop-types';
 
 class ResourceList extends React.Component {
+
+  static propTypes = {
+    resources: PropTypes.arrayOf(PropTypes.object).isRequired,
+    editFunc: PropTypes.func.isRequired,
+    deleteFunc: PropTypes.func.isRequired,
+  }
+
   render () {
-    const {editFunc, deleteFunc} = this.props;
-    const tableHeaders = Object.keys(this.props.objectModel).map(p => {
-      return (<th key={p}>{p}</th>)
+    const {resources, editFunc, deleteFunc} = this.props;
+
+    const tableHeaders = Object.keys(resources[0]).map(p => {
+      return (<th key={p}>{p}</th>);
     });
-    const resourceItems = this.props.resources.map(r => {
-      return <ResourceItem key={r.id} item={r} editFunc={editFunc} deleteFunc={deleteFunc} />
+
+    const resourceItems = resources.map(r => {
+      return (<ResourceItem key={r.id} item={r} editFunc={editFunc} deleteFunc={deleteFunc} />);
     });
+
     return (
       <table className='ResourceList table'>
         <thead>

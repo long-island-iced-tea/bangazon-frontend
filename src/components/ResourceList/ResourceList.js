@@ -14,6 +14,11 @@ class ResourceList extends React.Component {
   render () {
     const {resources, editFunc, deleteFunc} = this.props;
 
+    // if there is no data, render nothing
+    if (resources.length === 0) {
+      return null;
+    }
+
     const tableHeaders = Object.keys(resources[0]).map(p => {
       return (<th key={p}>{p}</th>);
     });

@@ -38,11 +38,11 @@ class AddItemForm extends React.Component {
       <div className='AddItemForm'>
         {
           this.state.isAdding ? (
-            <div className="card">
+            <div className="item-form card">
               <div className="card-body">
                 <form>
                   {formInputs}
-                  <button className="btn btn-default" type='submit'>Add Item</button>
+                  <button className="btn btn-default float-right" type='submit'>Add Item</button>
                 </form>
               </div>
             </div>
@@ -50,7 +50,7 @@ class AddItemForm extends React.Component {
             null
           )
         }
-        <button className="btn" onClick={this.toggleAdding}>
+        <button className="plus-btn btn btn-outline-primary btn-lg float-right" onClick={this.toggleAdding}>
           <i className="fas fa-plus-circle"></i>
         </button>
       </div>

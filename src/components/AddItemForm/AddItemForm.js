@@ -9,6 +9,14 @@ class AddItemForm extends React.Component {
     addFunc: PropTypes.func.isRequired
   }
 
+  state = {
+    isAdding: false
+  }
+
+  toggleAdding = (e) => {
+    this.setState({isAdding: !this.state.isAdding});
+  }
+
   render () {
     const {objectModel} = this.props;
 
@@ -28,15 +36,21 @@ class AddItemForm extends React.Component {
 
     return (
       <div className='AddItemForm'>
-        <div className="card">
-          <div className="card-body">
-            <form>
-              {formInputs}
-              <button className="btn btn-default" type='submit'>Add Item</button>
-            </form>
-          </div>
-        </div>
-        <button className="btn">
+        {
+          this.state.isAdding ? (
+            <div className="card">
+              <div className="card-body">
+                <form>
+                  {formInputs}
+                  <button className="btn btn-default" type='submit'>Add Item</button>
+                </form>
+              </div>
+            </div>
+          ) : (
+            null
+          )
+        }
+        <button className="btn" onClick={this.toggleAdding}>
           <i className="fas fa-plus-circle"></i>
         </button>
       </div>

@@ -15,12 +15,14 @@ class customerPage extends React.Component {
       createdAt: '',
       isActive: false
     }
+
     getcustomers = () => {
       apiAccess.ApiGet('customers')
         .then(res => {
           this.setState({customerModel: res.data});
         });
     }
+
     addcustomer = (newCustomer) => {
       apiAccess
         .apiPost('customer/customer', newCustomer)
@@ -28,6 +30,7 @@ class customerPage extends React.Component {
           this.getcustomers();
         });
     }
+
     deletecustomer = (id) => {
       apiAccess
         .apiDelete('customer/' + id)
@@ -35,6 +38,7 @@ class customerPage extends React.Component {
           this.getcustomers();
         });
     }
+
     editcustomer = (newcustomer) => {
       apiAccess
         .apiPut('customer', newcustomer)
@@ -42,9 +46,11 @@ class customerPage extends React.Component {
           this.getcustomers();
         });
     };
+
     componentDidMount () {
       this.getcustomers();
     }
+
     render () {
       return (
         <div className='customersPage'>

@@ -43,7 +43,7 @@ class AddItemForm extends React.Component {
           <div key={key} class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id={key} />
-              <label class="form-check-label" for={key}>
+              <label class="form-check-label" htmlFor={key}>
                 {key}
               </label>
             </div>

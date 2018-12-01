@@ -2,17 +2,18 @@ import React from 'react';
 import ResourceList from './ResourceList/ResourceList';
 import AddItemForm from './AddItemForm/AddItemForm';
 import apiAccess from '../api-access';
-  class customerPage extends React.Component {
+class customerPage extends React.Component {
     state = {
       customers: []
     }
+
     customerModel = {
-      Id: 0,
-      FirstName: '',
+      id: 0,
+      firstName: '',
       lastName: '',
-      DepartmentId: 0,
-      ComputerId: 0,
-      DepartmentName: ''
+      departmentId: 0,
+      createdAt: '',
+      isActive: false
     }
     getcustomers = () => {
       apiAccess.ApiGet('customers')

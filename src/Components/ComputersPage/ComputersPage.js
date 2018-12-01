@@ -30,10 +30,16 @@ class ComputersPage extends React.Component {
       });
   }
 
+  addItem = (newItem) => {
+    apiAccess.apiPost('computer/computer', newItem)
+      .then(res => {
+        this.getItems();
+      });
+  }
   render () {
     return (
       <div className='ComputersPage'>
-        <AddItemForm objectModel={objectModel} />
+        <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
         <ResourceList resources={this.state.items} />
       </div>
     );

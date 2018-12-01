@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProductsPage.css';
-import '../../api-access/api';
+import backend from '../../api-access/api';
 
 const objectModel = {
   id: 0,
@@ -13,6 +13,22 @@ const objectModel = {
 };
 
 class ProductsPage extends React.Component {
+
+  state = {
+    items: [],
+  }
+
+  getItems = () => {
+    backend.apiGet('product')
+      .then(res => {
+        this.setState({items: res.data});
+      });
+  }
+
+  componentDidMount() {
+    this.getItems();
+  }
+
   render () {
     return (
       <div className='ProductsPage'>

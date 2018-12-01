@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import SideNav from '../components/SideNav/SideNav';
 import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
 import ProductTypesPage from '../components/ProductTypesPage/ProductTypesPage';
@@ -16,7 +17,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="row container-fluid">
             <div className="col-3 sidebar-container">
-
+              <SideNav/>
             </div>
             <div className="col-9 resource-page-container">
               <Switch>

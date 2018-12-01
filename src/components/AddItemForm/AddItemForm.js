@@ -17,6 +17,7 @@ class AddItemForm extends React.Component {
     this.setState({isAdding: !this.state.isAdding});
   }
 
+  // Creates the form inputs based on the object model from props
   formInputs = () => {
     const {objectModel} = this.props;
 
@@ -28,6 +29,7 @@ class AddItemForm extends React.Component {
 
       let type = '';
 
+      // Check the type of the value
       switch (typeof objectModel[key]) {
 
       case 'string':
@@ -40,10 +42,10 @@ class AddItemForm extends React.Component {
 
       case 'boolean':
         return (
-          <div key={key} class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id={key} />
-              <label class="form-check-label" htmlFor={key}>
+          <div key={key} className="form-group">
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" id={key} />
+              <label className="form-check-label" htmlFor={key}>
                 {key}
               </label>
             </div>
@@ -63,6 +65,7 @@ class AddItemForm extends React.Component {
     });
   }
 
+  // Builds an object from the form inputs and then passes the newItem to the addFunc from props.
   postItem = (e) => {
 
     e.preventDefault();

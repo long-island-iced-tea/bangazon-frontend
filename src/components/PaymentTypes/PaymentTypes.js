@@ -1,9 +1,10 @@
 import React from 'react';
-import ResourceList from './ResourceList/ResourceList';
-import AddItemForm from './AddItemForm/AddItemForm';
-import apiAccess from '../api-access';
+import ResourceList from '../ResourceList/ResourceList';
+import AddItemForm from '../AddItemForm/AddItemForm';
+import apiAccess from '../../api-access/api';
 
 class paymentTypePage extends React.Component {
+
     state = {
       paymentTypes: []
     }
@@ -16,14 +17,14 @@ class paymentTypePage extends React.Component {
     };
 
     getpaymentTypes = () => {
-      apiAccess.ApiGet('paymentTypes')
+      apiAccess.apiGet('paymentType')
         .then(res => {
-          this.setState({paymentTypeModel: res.data});
+          this.setState({paymentTypes: res.data});
         });
     }
     addpaymentType = (newpaymentType) => {
       apiAccess
-        .apiPost('paymentType/paymentType', newpaymentType)
+        .apiPost('paymentType', newpaymentType)
         .then(res => {
           this.getpaymentTypes();
         });

@@ -31,6 +31,9 @@ class AddItemForm extends React.Component {
       case 'number':
         newItem[input.id] = input.value * 1;
         break;
+      case 'checkbox':
+        newItem[input.id] = input.checked;
+        break;
       default:
         newItem[input.id] = input.value;
         break;
@@ -49,10 +52,38 @@ class AddItemForm extends React.Component {
         return null;
       }
 
+      let type = '';
+
+      switch (typeof objectModel[key]) {
+
+      case 'string':
+        type = 'text';
+        break;
+
+      case 'number':
+        type = 'number';
+        break;
+
+      case 'boolean':
+        return (
+          <div key={key} class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id={key} />
+              <label class="form-check-label" for={key}>
+                {key}
+              </label>
+            </div>
+          </div>
+        );
+
+      default:
+        break;
+      }
+
       return (
         <div key={key} className="form-group">
           <label htmlFor={key}>{key}</label>
-          <input type={typeof objectModel[key] === 'string' ? 'text' : 'number'} className="form-control" id={key} required />
+          <input type={type} className="form-control" id={key} required />
         </div>
       );
     });

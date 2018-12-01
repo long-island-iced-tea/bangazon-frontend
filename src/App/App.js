@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
-
 import ProductTypesPage from '../components/ProductTypesPage/ProductTypesPage';
+import TrainingProgramPage from '../Components/TrainingProgramPage/TrainingProgramPage';
 
 class App extends Component {
 
@@ -22,6 +22,7 @@ class App extends Component {
                 <Route path="/" exact />
                 <Route path="/products" exact component={ProductsPage} />
                 <Route path="/producttype" exact component={ProductTypesPage} />
+                <Route path="/trainingprogram" exact component={TrainingProgramPage} />
               </Switch>
             </div>
           </div>

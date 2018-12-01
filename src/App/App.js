@@ -3,6 +3,8 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
 
+import ProductTypesPage from '../components/ProductTypesPage/ProductTypesPage';
+
 class App extends Component {
 
   state = {};
@@ -19,6 +21,7 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact />
                 <Route path="/products" exact component={ProductsPage} />
+                <Route path="/producttype" exact component={ProductTypesPage} />
               </Switch>
             </div>
           </div>

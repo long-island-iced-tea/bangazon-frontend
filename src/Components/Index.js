@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function indexButton (props) {
-  return <button>${this.props.title}</button>;
+function indexButton(title) {
+  return (<button>{`${title}`}</button>);
 }
 
 
 class Navbar extends React.Component {
+
+  button = indexButton(this.props.title);
   render () {
     const myTitle = '/' + this.props.title;
     return (
-      <Link to={myTitle}>
-        <indexButton title={this.props.title}/>
+      <Link className="btn btn-primary" to={myTitle}>
+        {this.button}
       </Link>
     );
   }

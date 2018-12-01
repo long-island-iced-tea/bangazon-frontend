@@ -1,6 +1,9 @@
 import React from 'react';
 import './ProductsPage.css';
-import backend from '../../api-access/api';
+import apiAccess from '../../api-access/api';
+
+import ResourceList from '../ResourceList/ResourceList';
+import AddItemForm from '../AddItemForm/AddItemForm';
 
 const objectModel = {
   id: 0,
@@ -19,7 +22,7 @@ class ProductsPage extends React.Component {
   }
 
   getItems = () => {
-    backend.apiGet('product')
+    apiAccess.apiGet('product')
       .then(res => {
         this.setState({items: res.data});
       });
@@ -32,7 +35,8 @@ class ProductsPage extends React.Component {
   render () {
     return (
       <div className='ProductsPage'>
-
+        <ResourceList resources={this.state.items}/>
+        <AddItemForm objectModel={objectModel}/>
       </div>
     );
   }

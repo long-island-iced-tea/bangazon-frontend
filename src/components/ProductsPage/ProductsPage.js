@@ -28,6 +28,27 @@ class ProductsPage extends React.Component {
       });
   }
 
+  addItem = (newItem) => {
+    apiAccess.apiPost('product/product', newItem)
+      .then(res => {
+        this.getItems();
+      });
+  }
+
+  deleteItem = (id) => {
+    apiAccess.apiDelete('product/' + id)
+      .then(res => {
+        this.getItems();
+      });
+  }
+
+  editItem = (newItem) => {
+    apiAccess.apiPut('product', newItem)
+      .then(res => {
+        this.getItems();
+      });
+  }
+
   componentDidMount() {
     this.getItems();
   }
@@ -35,8 +56,8 @@ class ProductsPage extends React.Component {
   render () {
     return (
       <div className='ProductsPage'>
-        <ResourceList resources={this.state.items}/>
-        <AddItemForm objectModel={objectModel}/>
+        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editItem}/>
+        <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
       </div>
     );
   }

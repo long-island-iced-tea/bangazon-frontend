@@ -8,9 +8,9 @@ function indexButton (props) {
 
 class Navbar extends React.Component {
   render () {
-
+    const myTitle = '/' + this.props.title;
     return (
-      <Link to="">
+      <Link to={myTitle}>
         <indexButton title={this.props.title}/>
       </Link>
     );

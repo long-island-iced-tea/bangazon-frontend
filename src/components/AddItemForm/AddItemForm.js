@@ -17,6 +17,29 @@ class AddItemForm extends React.Component {
     this.setState({isAdding: !this.state.isAdding});
   }
 
+  postItem = (e) => {
+
+    e.preventDefault();
+    const formInputs = e.target.elements;
+
+    const newItem = {};
+
+    [...formInputs].forEach(input => {
+      switch (input.type) {
+      case 'submit':
+        return;
+      case 'number':
+        newItem[input.id] = input.value * 1;
+        break;
+      default:
+        newItem[input.id] = input.value;
+        break;
+      }
+    });
+
+    this.props.addFunc(newItem);
+  }
+
   render () {
     const {objectModel} = this.props;
 
@@ -29,7 +52,7 @@ class AddItemForm extends React.Component {
       return (
         <div key={key} className="form-group">
           <label htmlFor={key}>{key}</label>
-          <input type="text" className="form-control" id={key} required />
+          <input type={typeof objectModel[key] === 'string' ? 'text' : 'number'} className="form-control" id={key} required />
         </div>
       );
     });
@@ -40,9 +63,9 @@ class AddItemForm extends React.Component {
           this.state.isAdding ? (
             <div className="item-form card">
               <div className="card-body">
-                <form>
+                <form onSubmit={this.postItem}>
                   {formInputs}
-                  <button className="btn btn-default float-right" type='submit'>Add Item</button>
+                  <button className="btn btn-default float-right" type='submit' >Add Item</button>
                 </form>
               </div>
             </div>

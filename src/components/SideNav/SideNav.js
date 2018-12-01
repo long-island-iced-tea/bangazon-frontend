@@ -2,19 +2,33 @@ import React from 'react';
 import './SideNav.css';
 import NavButton from '../Index';
 
-// const buttonTitles = ['Customer', 'Orders', 'Product', 'Employee'];
-
-// for (let i = 0; i < buttonTitles.lenth; i++) {
-//   return <li>buttonTitles[i]</li>;
-// }
+const buttonTitles = [
+  'customer',
+  'orders',
+  'products',
+  'employee',
+  'paymenttypes',
+  'producttype',
+  'department',
+  'computers',
+  'trainingprogram'
+];
 
 class SideNav extends React.Component {
   render () {
+    const indexButtons = buttonTitles.map(title => {
+      return (
+        <li>
+          <NavButton title={title}/>
+        </li>
+      );
+    });
     return (
       <div className="sidenav">
         <h1>Side Nav</h1>
-        <NavButton
-        />
+        <ul>
+          {indexButtons}
+        </ul>
       </div>
     );
   }

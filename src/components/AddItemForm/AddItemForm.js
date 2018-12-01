@@ -17,36 +17,10 @@ class AddItemForm extends React.Component {
     this.setState({isAdding: !this.state.isAdding});
   }
 
-  postItem = (e) => {
-
-    e.preventDefault();
-    const formInputs = e.target.elements;
-
-    const newItem = {};
-
-    [...formInputs].forEach(input => {
-      switch (input.type) {
-      case 'submit':
-        return;
-      case 'number':
-        newItem[input.id] = input.value * 1;
-        break;
-      case 'checkbox':
-        newItem[input.id] = input.checked;
-        break;
-      default:
-        newItem[input.id] = input.value;
-        break;
-      }
-    });
-
-    this.props.addFunc(newItem);
-  }
-
-  render () {
+  formInputs = () => {
     const {objectModel} = this.props;
 
-    const formInputs = Object.keys(objectModel).map(key => {
+    return Object.keys(objectModel).map(key => {
 
       if (key.toLowerCase() === 'id') {
         return null;
@@ -87,7 +61,35 @@ class AddItemForm extends React.Component {
         </div>
       );
     });
+  }
 
+  postItem = (e) => {
+
+    e.preventDefault();
+    const formInputs = e.target.elements;
+
+    const newItem = {};
+
+    [...formInputs].forEach(input => {
+      switch (input.type) {
+      case 'submit':
+        return;
+      case 'number':
+        newItem[input.id] = input.value * 1;
+        break;
+      case 'checkbox':
+        newItem[input.id] = input.checked;
+        break;
+      default:
+        newItem[input.id] = input.value;
+        break;
+      }
+    });
+
+    this.props.addFunc(newItem);
+  }
+
+  render () {
     return (
       <div className='AddItemForm'>
         {
@@ -95,7 +97,7 @@ class AddItemForm extends React.Component {
             <div className="item-form card">
               <div className="card-body">
                 <form onSubmit={this.postItem}>
-                  {formInputs}
+                  {this.formInputs()}
                   <button className="btn btn-default float-right" type='submit' >Add Item</button>
                 </form>
               </div>

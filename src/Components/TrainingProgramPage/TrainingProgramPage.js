@@ -31,10 +31,14 @@ class TrainingProgramPage extends React.Component {
     });
   }
 
+  deleteTrainingProgram = (id) => {
+    apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => alert(err.response.data.error));
+  }
+
   render() {
     return (
       <div>
-        <ResourceList resources={this.state.trainingprograms} />
+        <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} />
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>
     );

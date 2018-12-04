@@ -26,13 +26,17 @@ class ResourceItem extends React.Component {
 
     });
 
+    const deleter = () => {
+      deleteFunc(this.props.item.id);
+    };
+
     return (
       <tr className='ResourceItem'>
         {itemProps}
         <td onClick={editFunc}>
           <i className="fas fa-edit"></i>
         </td>
-        <td onClick={deleteFunc}>
+        <td onClick={deleter}>
           <i className="fas fa-minus-circle"></i>
         </td>
       </tr>

@@ -5,8 +5,7 @@ import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
 import ProductTypesPage from '../components/ProductTypesPage/ProductTypesPage';
 import TrainingProgramPage from '../components/TrainingProgramPage/TrainingProgramPage';
-import CustomerPage from '../components/Customers/CustomersPage';
-import ComputersPage from '../components/ComputersPage/ComputersPage';
+import CustomerPage from '../components/CustomersPage/CustomersPage';
 import OrdersPage from '../components/OrdersPage/OrdersPage';
 import DepartmentsPage from '../components/DepartmentsPage/DepartmentsPage';
 import PaymentTypePage from '../components/PaymentTypes/PaymentTypes';
@@ -31,8 +30,7 @@ class App extends Component {
                 <Route path="/products" exact component={ProductsPage} />
                 <Route path="/producttype" exact component={ProductTypesPage} />
                 <Route path="/trainingprogram" exact component={TrainingProgramPage} />
-                <Route path="/customers" exact component={CustomerPage} />
-                <Route path="/computers" exact component={ComputersPage} />
+                <Route path="/customer" exact component={CustomerPage} />
                 <Route path="/departments" exact component={DepartmentsPage} />
                 <Route path="/paymenttype" exact component={PaymentTypePage} />
               </Switch>

@@ -32,7 +32,7 @@ class DepartmentsPage extends React.Component {
     apiAccess.apiPost('department', newItem)
       .then(res => {
         this.getItems();
-      })
+      });
   }
   render () {
     return (

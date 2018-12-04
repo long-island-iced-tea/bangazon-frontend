@@ -38,7 +38,7 @@ class ComputersPage extends React.Component {
   }
 
   deleteItem = (id) => {
-    apiAccess.apiDelete(`computer/${id}`).then(res => this.getItems());
+    apiAccess.apiDelete(`computer/${id}`).then(res => this.getItems()).catch(err => console.error(err));
   }
 
   render () {

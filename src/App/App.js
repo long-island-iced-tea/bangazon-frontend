@@ -4,7 +4,7 @@ import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
 import ProductTypesPage from '../components/ProductTypesPage/ProductTypesPage';
 import TrainingProgramPage from '../components/TrainingProgramPage/TrainingProgramPage';
-import EmployeePage from '../components/EmployeePage';
+import EmployeePage from '../components/Employees/EmployeePage';
 
 
 class App extends Component {

@@ -1,7 +1,7 @@
 import React from 'react';
-import ResourceList from './ResourceList/ResourceList';
-import AddItemForm from './AddItemForm/AddItemForm';
-import apiAccess from '../api-access';
+import ResourceList from '../ResourceList/ResourceList';
+import AddItemForm from '../AddItemForm/AddItemForm';
+import apiAccess from '../../api-access/api';
 
 class EmployeePage extends React.Component {
   state = {

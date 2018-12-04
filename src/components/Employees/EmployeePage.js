@@ -21,7 +21,7 @@ class EmployeePage extends React.Component {
     apiAccess
       .apiGet('employee')
       .then(res => {
-        this.setState({employeeModel: res.data});
+        this.setState({employees: res.data});
       });
   }
 

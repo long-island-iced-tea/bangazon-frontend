@@ -20,7 +20,7 @@ class customerPage extends React.Component {
     getcustomers = () => {
       apiAccess.apiGet('customers')
         .then(res => {
-          this.setState({customerModel: res.data});
+          this.setState({customers: res.data});
         });
     }
 

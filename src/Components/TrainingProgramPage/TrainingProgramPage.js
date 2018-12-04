@@ -17,16 +17,8 @@ class TrainingProgramPage extends React.Component {
     maxAttendees: 0
   }
 
-  sanitize = (dataArray) => {
-    return dataArray.reduce((newArray, tp) => {
-      delete tp.attendees;
-      newArray.push(tp);
-      return newArray;
-    }, []);
-  }
-
   getAllResources = () => {
-    apiAccess.apiGet('trainingprogram').then(tp => this.setState({ trainingprograms: this.sanitize(tp.data) }));
+    apiAccess.apiGet('trainingprogram').then(tp => this.setState({ trainingprograms: tp.data }));
   }
 
   componentDidMount() {

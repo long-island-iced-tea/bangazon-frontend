@@ -15,8 +15,15 @@ class ResourceItem extends React.Component {
     const {item, editFunc, deleteFunc} = this.props;
 
     // Create table data from the values of the item
-    const itemProps = Object.values(item).map(v => {
-      return (<td key={v}>{v}</td>);
+    const itemProps = Object.values(item).map((v, i) => {
+
+      if (Array.isArray(v)) {
+        return (<td key={i}>{'Count: ' + v.length}</td>);
+      } else if (typeof v === 'object' && !Array.isArray(v)) {
+        return (<td key={i}>{JSON.stringify(v)}</td>);
+      }
+      return (<td key={i}>{v}</td>);
+
     });
 
     return (

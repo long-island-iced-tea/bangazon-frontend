@@ -30,7 +30,7 @@ class App extends Component {
                 <Route path="/products" exact component={ProductsPage} />
                 <Route path="/producttype" exact component={ProductTypesPage} />
                 <Route path="/trainingprogram" exact component={TrainingProgramPage} />
-                <Route path="/customers" exact component={CustomerPage} />
+                <Route path="/customer" exact component={CustomerPage} />
                 <Route path="/departments" exact component={DepartmentsPage} />
                 <Route path="/paymenttype" exact component={PaymentTypePage} />
               </Switch>

@@ -1,7 +1,8 @@
 import React from 'react';
-import ResourceList from './ResourceList/ResourceList';
-import AddItemForm from './AddItemForm/AddItemForm';
-import apiAccess from '../api-access';
+import ResourceList from '../ResourceList/ResourceList';
+import AddItemForm from '../AddItemForm/AddItemForm';
+import apiAccess from '../../api-access/api';
+
 class customerPage extends React.Component {
     state = {
       customers: []
@@ -17,7 +18,7 @@ class customerPage extends React.Component {
     }
 
     getcustomers = () => {
-      apiAccess.ApiGet('customers')
+      apiAccess.apiGet('customers')
         .then(res => {
           this.setState({customerModel: res.data});
         });

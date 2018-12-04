@@ -22,7 +22,11 @@ class ResourceItem extends React.Component {
       } else if (typeof v === 'object' && !Array.isArray(v)) {
         return (<td key={i}>{JSON.stringify(v)}</td>);
       }
-      return (<td key={i}>{v}</td>);
+      return (
+        <td key={i}>
+          <input type="text" value={v} />
+        </td>
+      );
 
     });
 

@@ -20,22 +20,24 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <div className="row container-fluid">
-            <div className="col-3 sidebar-container">
-              <SideNav/>
-            </div>
-            <div className="col-9 resource-page-container">
-              <Switch>
-                <Route path="/" exact />
-                <Route path="/orders" exact component={OrdersPage} />
-                <Route path="/products" exact component={ProductsPage} />
-                <Route path="/producttype" exact component={ProductTypesPage} />
-                <Route path="/trainingprogram" exact component={TrainingProgramPage} />
-                <Route path="/employee" exact component={EmployeePage} />
-                <Route path="/computers" exact component={ComputersPage} />
-                <Route path="/departments" exact component={DepartmentsPage} />
-                <Route path="/paymenttype" exact component={PaymentTypePage} />
-              </Switch>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-3 sidebar-container">
+                <SideNav/>
+              </div>
+              <div className="col-9 resource-page-container">
+                <Switch>
+                  <Route path="/" exact />
+                  <Route path="/orders" exact component={OrdersPage} />
+                  <Route path="/products" exact component={ProductsPage} />
+                  <Route path="/producttype" exact component={ProductTypesPage} />
+                  <Route path="/trainingprogram" exact component={TrainingProgramPage} />
+                  <Route path="/employee" exact component={EmployeePage} />
+                  <Route path="/computers" exact component={ComputersPage} />
+                  <Route path="/departments" exact component={DepartmentsPage} />
+                  <Route path="/paymenttype" exact component={PaymentTypePage} />
+                </Switch>
+              </div>
             </div>
           </div>
         </BrowserRouter>

@@ -5,7 +5,7 @@ import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
 import ProductTypesPage from '../components/ProductTypesPage/ProductTypesPage';
 import TrainingProgramPage from '../components/TrainingProgramPage/TrainingProgramPage';
-import CustomerPage from '../components/Customers/CustomersPage';
+import CustomerPage from '../components/CustomersPage/CustomersPage';
 import OrdersPage from '../components/OrdersPage/OrdersPage';
 import DepartmentsPage from '../components/DepartmentsPage/DepartmentsPage';
 import PaymentTypePage from '../components/PaymentTypes/PaymentTypes';

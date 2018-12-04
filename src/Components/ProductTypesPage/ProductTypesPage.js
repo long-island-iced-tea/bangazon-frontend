@@ -36,6 +36,7 @@ class ProductTypesPage extends React.Component {
   render () {
     return (
       <div className='ProductTypesPage'>
+        <h1>Product Types</h1>
         <ResourceList resources={this.state.items}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
       </div>

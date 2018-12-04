@@ -1,4 +1,5 @@
 import React from 'react';
+import './EmployeePage.css';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
@@ -56,6 +57,7 @@ class EmployeePage extends React.Component {
   render () {
     return (
       <div className='EmployeesPage'>
+        <h1>Employees</h1>
         <ResourceList resources={this.state.employees} deleteFunc={this.deleteEmployee} editFunc={this.editEmployee}/>
         <AddItemForm objectModel={this.employeeModel} addFunc={this.addEmployee}/>
       </div>

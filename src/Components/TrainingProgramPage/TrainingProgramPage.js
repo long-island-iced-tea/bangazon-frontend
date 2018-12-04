@@ -1,4 +1,5 @@
 import React from 'react';
+import './TrainingProgramPage.css';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
@@ -33,7 +34,8 @@ class TrainingProgramPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="TrainingProgramPage">
+        <h1>Training Programs</h1>
         <ResourceList resources={this.state.trainingprograms} />
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>

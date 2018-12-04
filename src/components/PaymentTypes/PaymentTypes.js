@@ -53,6 +53,7 @@ class paymentTypePage extends React.Component {
     render () {
       return (
         <div className='paymentTypesPage'>
+          <h1>Payment Types</h1>
           <ResourceList resources={this.state.paymentTypes} deleteFunc={this.deletepaymentType} editFunc={this.editpaymentType}/>
           <AddItemForm objectModel={this.paymentTypeModel} addFunc={this.addpaymentType}/>
         </div>

@@ -37,6 +37,7 @@ class DepartmentsPage extends React.Component {
   render () {
     return (
       <div className='DepartmentsPage'>
+        <h1>Departments</h1>
         <ResourceList resources={this.state.items} />
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
       </div>

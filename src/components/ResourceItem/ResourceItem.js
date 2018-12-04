@@ -23,10 +23,10 @@ class ResourceItem extends React.Component {
       <tr className='ResourceItem'>
         {itemProps}
         <td onClick={editFunc}>
-          <i class="fas fa-edit"></i>
+          <i className="fas fa-edit"></i>
         </td>
         <td onClick={deleteFunc}>
-          <i class="fas fa-minus-circle"></i>
+          <i className="fas fa-minus-circle"></i>
         </td>
       </tr>
     );

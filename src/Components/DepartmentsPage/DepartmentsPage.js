@@ -1,5 +1,5 @@
 import React from 'react';
-import './DepartmentsPage.css';
+//import './DepartmentsPage.css';
 import apiAccess from '../../api-access/api';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';

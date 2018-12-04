@@ -9,7 +9,7 @@ const buttonTitles = [
   'employee',
   'paymenttype',
   'producttype',
-  'department',
+  'departments',
   'computers',
   'trainingprogram'
 ];

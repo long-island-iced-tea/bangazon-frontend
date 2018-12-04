@@ -5,6 +5,7 @@ import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
 import ProductTypesPage from '../components/ProductTypesPage/ProductTypesPage';
 import TrainingProgramPage from '../components/TrainingProgramPage/TrainingProgramPage';
+import CustomerPage from '../components/CustomersPage/CustomersPage';
 import EmployeePage from '../components/Employees/EmployeePage';
 import ComputersPage from '../components/ComputersPage/ComputersPage';
 import OrdersPage from '../components/OrdersPage/OrdersPage';
@@ -20,24 +21,23 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-3 sidebar-container">
-                <SideNav/>
-              </div>
-              <div className="col-9 resource-page-container">
-                <Switch>
-                  <Route path="/" exact />
-                  <Route path="/orders" exact component={OrdersPage} />
-                  <Route path="/products" exact component={ProductsPage} />
-                  <Route path="/producttype" exact component={ProductTypesPage} />
-                  <Route path="/trainingprogram" exact component={TrainingProgramPage} />
-                  <Route path="/employee" exact component={EmployeePage} />
-                  <Route path="/computers" exact component={ComputersPage} />
-                  <Route path="/departments" exact component={DepartmentsPage} />
-                  <Route path="/paymenttype" exact component={PaymentTypePage} />
-                </Switch>
-              </div>
+          <div className="row container-fluid">
+            <div className="col-3 sidebar-container">
+              <SideNav/>
+            </div>
+            <div className="col-9 resource-page-container">
+              <Switch>
+                <Route path="/" exact />
+                <Route path="/orders" exact component={OrdersPage} />
+                <Route path="/products" exact component={ProductsPage} />
+                <Route path="/producttype" exact component={ProductTypesPage} />
+                <Route path="/trainingprogram" exact component={TrainingProgramPage} />
+                <Route path="/customer" exact component={CustomerPage} />
+                <Route path="/employee" exact component={EmployeePage} />
+                <Route path="/computers" exact component={ComputersPage} />
+                <Route path="/departments" exact component={DepartmentsPage} />
+                <Route path="/paymenttype" exact component={PaymentTypePage} />
+              </Switch>
             </div>
           </div>
         </BrowserRouter>

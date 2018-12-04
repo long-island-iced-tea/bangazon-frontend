@@ -7,7 +7,7 @@ const buttonTitles = [
   'orders',
   'products',
   'employee',
-  'paymenttypes',
+  'paymenttype',
   'producttype',
   'department',
   'computers',

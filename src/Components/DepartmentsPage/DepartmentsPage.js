@@ -34,6 +34,15 @@ class DepartmentsPage extends React.Component {
         this.getItems();
       });
   }
+
+  editDepartments = (newDepartments) => {
+    apiAccess
+      .apiPut('departments', newDepartments)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='DepartmentsPage'>

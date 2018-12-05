@@ -37,6 +37,14 @@ class OrdersPage extends React.Component {
       });
   }
 
+  editOrders = (newOrders) => {
+    apiAccess
+      .apiPut('orders', newOrders)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='OrdersPage'>

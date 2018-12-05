@@ -33,6 +33,14 @@ class ProductTypesPage extends React.Component {
       });
   }
 
+  editProductType = (newProductType) => {
+    apiAccess
+      .apiPut('productType', newProductType)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='ProductTypesPage'>

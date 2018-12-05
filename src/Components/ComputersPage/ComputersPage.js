@@ -36,6 +36,15 @@ class ComputersPage extends React.Component {
         this.getItems();
       });
   }
+
+  editComputer = (newcomputer) => {
+    apiAccess
+      .apiPut('computer', newcomputer)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='ComputersPage'>

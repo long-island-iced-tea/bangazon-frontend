@@ -1,5 +1,5 @@
 import React from 'react';
-import './TrainingProgramPage.css';
+//import './TrainingProgramPage.css';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';

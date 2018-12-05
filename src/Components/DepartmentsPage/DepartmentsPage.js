@@ -38,11 +38,18 @@ class DepartmentsPage extends React.Component {
   deleteItem = (id) => {
     alert('This resource type cannot be deleted.');
   }
+  editDepartments = (newDepartments) => {
+    apiAccess
+      .apiPut('department', newDepartments)
+      .then(res => {
+        this.getItems();
+      });
+  };
 
   render () {
     return (
       <div className='DepartmentsPage'>
-        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem}/>
+        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editDepartments}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
       </div>
     );

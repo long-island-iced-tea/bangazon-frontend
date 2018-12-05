@@ -40,12 +40,20 @@ class ComputersPage extends React.Component {
   deleteItem = (id) => {
     apiAccess.apiDelete(`computer/${id}`).then(res => this.getItems()).catch(err => console.error(err));
   }
+  
+  editComputer = (newcomputer) => {
+    apiAccess
+      .apiPut('computer/computer', newcomputer)
+      .then(res => {
+        this.getItems();
+      });
+  };
 
   render () {
     return (
       <div className='ComputersPage'>
+        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editComputer}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
-        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem}/>
       </div>
     );
   }

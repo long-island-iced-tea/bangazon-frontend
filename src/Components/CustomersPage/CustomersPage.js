@@ -26,23 +26,19 @@ class customerPage extends React.Component {
 
     addcustomer = (newCustomer) => {
       apiAccess
-        .apiPost('customer/customer', newCustomer)
+        .apiPost('customers', newCustomer)
         .then(res => {
           this.getcustomers();
         });
     }
 
     deletecustomer = (id) => {
-      apiAccess
-        .apiDelete('customer/' + id)
-        .then(res => {
-          this.getcustomers();
-        });
+      alert('Customers cannot be deleted.');
     }
 
     editcustomer = (newcustomer) => {
       apiAccess
-        .apiPut('customer', newcustomer)
+        .apiPut('customers', newcustomer)
         .then(res => {
           this.getcustomers();
         });

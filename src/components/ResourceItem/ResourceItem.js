@@ -7,6 +7,7 @@ class ResourceItem extends React.Component {
 
   state = {
     item: this.props.item,
+    isEditing: false,
   }
 
   static propTypes = {
@@ -18,7 +19,7 @@ class ResourceItem extends React.Component {
   changeValue = (e) => {
     const {item} = {...this.state};
     item[e.target.id] = e.target.value;
-    this.setState({item})
+    this.setState({item});
   }
 
   changeCheckbox = (e) => {
@@ -27,8 +28,17 @@ class ResourceItem extends React.Component {
     this.setState({item});
   }
 
+  toggleEditing = (e) => {
+    this.setState({isEditing: !this.state.isEditing});
+  }
+
+  editItem = () => {
+    this.props.editFunc(this.state.item);
+    this.toggleEditing();
+  }
+
   render () {
-    const {item, editFunc, deleteFunc} = this.props;
+    const {item, deleteFunc} = this.props;
 
     // Create table data from the values of the item
     const itemProps = Object.entries(item).map((kvp, i) => {
@@ -54,7 +64,7 @@ class ResourceItem extends React.Component {
       else if (typeof v === 'boolean') {
         return (
           <td key={i}>
-            <input type="checkbox" id={k} checked={this.state.item[k]} onChange={this.changeCheckbox}/>
+            <input type="checkbox" id={k} checked={this.state.item[k]} onChange={this.changeCheckbox} disabled={!this.state.isEditing}/>
           </td>
         )
       }
@@ -62,13 +72,13 @@ class ResourceItem extends React.Component {
       else if (typeof v === 'number') {
         return (
           <td key={i}>
-            <input type="number" id={k} value={this.state.item[k]} onChange={this.changeValue}/>
+            <input type="number" id={k} value={this.state.item[k]} onChange={this.changeValue} disabled={!this.state.isEditing}/>
           </td>
         )
       }
       return (
         <td key={i}>
-          <input type="text" id={k} value={this.state.item[k]} onChange={this.changeValue}/>
+          <input type="text" id={k} value={this.state.item[k]} onChange={this.changeValue} disabled={!this.state.isEditing}/>
         </td>
       );
 
@@ -77,7 +87,7 @@ class ResourceItem extends React.Component {
     return (
       <tr className='ResourceItem'>
         {itemProps}
-        <td onClick={editFunc}>
+        <td onClick={this.state.isEditing ? this.editItem : this.toggleEditing}>
           <i className="fas fa-edit"></i>
         </td>
         <td onClick={deleteFunc}>

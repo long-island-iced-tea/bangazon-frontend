@@ -35,7 +35,7 @@ class ProductTypesPage extends React.Component {
 
   editProductType = (newProductType) => {
     apiAccess
-      .apiPut('productType', newProductType)
+      .apiPut('producttypes', newProductType)
       .then(res => {
         this.getItems();
       });

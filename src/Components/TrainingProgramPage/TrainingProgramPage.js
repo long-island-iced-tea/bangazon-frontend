@@ -31,6 +31,14 @@ class TrainingProgramPage extends React.Component {
     });
   }
 
+  editProductType = (newTraining) => {
+    apiAccess
+      .apiPut('trainingprogram' + trainingprogram.id, newTraining)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render() {
     return (
       <div>

@@ -33,11 +33,25 @@ class ProductTypesPage extends React.Component {
       });
   }
 
+  deleteItem = (id) => {
+    apiAccess.apiDelete(`producttypes/${id}`).then(x => this.getItems()).catch(err => console.error(err));
+  }
+  editItem = (newItem) => {
+    apiAccess.apiPut('producttypes', newItem)
+      .then(res => {
+        this.getItems();
+      });
+  }
+
   render () {
     return (
       <div className='ProductTypesPage'>
+<<<<<<< HEAD
         <h1>Product Types</h1>
         <ResourceList resources={this.state.items}/>
+=======
+        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editItem}/>
+>>>>>>> master
         <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
       </div>
     );

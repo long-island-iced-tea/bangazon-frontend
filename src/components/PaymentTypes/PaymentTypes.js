@@ -17,14 +17,14 @@ class paymentTypePage extends React.Component {
     };
 
     getpaymentTypes = () => {
-      apiAccess.apiGet('paymentType')
+      apiAccess.apiGet('paymenttype')
         .then(res => {
           this.setState({paymentTypes: res.data});
         });
     }
     addpaymentType = (newpaymentType) => {
       apiAccess
-        .apiPost('paymentType', newpaymentType)
+        .apiPost('paymenttype', newpaymentType)
         .then(res => {
           this.getpaymentTypes();
         });
@@ -32,7 +32,7 @@ class paymentTypePage extends React.Component {
 
     deletepaymentType = (id) => {
       apiAccess
-        .apiDelete('paymentType/' + id)
+        .apiDelete('paymenttype/' + id)
         .then(res => {
           this.getpaymentTypes();
         });
@@ -40,7 +40,7 @@ class paymentTypePage extends React.Component {
 
     editpaymentType = (newPaymentType) => {
       apiAccess
-        .apiPut('paymentType', newPaymentType)
+        .apiPut('paymenttype', newPaymentType)
         .then(res => {
           this.getpaymentTypes();
         });

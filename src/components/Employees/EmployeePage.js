@@ -34,12 +34,8 @@ class EmployeePage extends React.Component {
       });
   }
 
-  deleteEmployee = (id) => {
-    apiAccess
-      .apiDelete('employee/' + id)
-      .then(res => {
-        this.getEmployees();
-      });
+  deleteEmployee = () => {
+    alert('Employees cannot be deleted.');
   }
 
   editEmployee = (newEmployee) => {

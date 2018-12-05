@@ -42,7 +42,7 @@ class customerPage extends React.Component {
 
     editcustomer = (newcustomer) => {
       apiAccess
-        .apiPut('customer/customer', newcustomer)
+        .apiPut('customers', newcustomer)
         .then(res => {
           this.getcustomers();
         });

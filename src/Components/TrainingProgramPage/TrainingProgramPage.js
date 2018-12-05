@@ -33,7 +33,7 @@ class TrainingProgramPage extends React.Component {
 
   editProductType = (newTraining) => {
     apiAccess
-      .apiPut('trainingprogram' + trainingprogram.id, newTraining)
+      .apiPut('trainingprogram/' + newTraining.id, newTraining)
       .then(res => {
         this.getItems();
       });
@@ -42,7 +42,7 @@ class TrainingProgramPage extends React.Component {
   render() {
     return (
       <div>
-        <ResourceList resources={this.state.trainingprograms} />
+        <ResourceList resources={this.state.trainingprograms} editFunc={this.editProductType}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>
     );

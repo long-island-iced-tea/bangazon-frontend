@@ -1,5 +1,5 @@
 import React from 'react';
-import './ComputersPage.css';
+//import './ComputersPage.css';
 import apiAccess from '../../api-access/api';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import ResourceList from '../ResourceList/ResourceList';

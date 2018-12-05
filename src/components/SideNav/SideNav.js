@@ -18,17 +18,17 @@ class SideNav extends React.Component {
   render () {
     const indexButtons = buttonTitles.map(title => {
       return (
-        <li>
+        <p>
           <NavButton title={title}/>
-        </li>
+        </p>
       );
     });
     return (
       <div className="sidenav">
-        <h1>Side Nav</h1>
-        <ul>
+        {/* <h1>Side Nav</h1> */}
+        <p>
           {indexButtons}
-        </ul>
+        </p>
       </div>
     );
   }

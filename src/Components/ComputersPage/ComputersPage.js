@@ -39,7 +39,7 @@ class ComputersPage extends React.Component {
 
   editComputer = (newcomputer) => {
     apiAccess
-      .apiPut('computer', newcomputer)
+      .apiPut('computer/computer', newcomputer)
       .then(res => {
         this.getItems();
       });

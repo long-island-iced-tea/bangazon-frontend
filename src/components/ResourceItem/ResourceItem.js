@@ -37,7 +37,7 @@ class ResourceItem extends React.Component {
       var k = kvp[0];
 
       // Do not allow editing of the id field
-      if (k.toLowerCase() == 'id') {
+      if (k.toLowerCase() === 'id') {
         return (
           <td key={i}>{v}</td>
         )

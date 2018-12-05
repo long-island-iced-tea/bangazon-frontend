@@ -44,7 +44,7 @@ class ProductsPage extends React.Component {
 
  // return axios.put(`${apiBaseUrl}/${endpoint}`, data);
   editItem = (newItem) => {
-    apiAccess.apiPut('Products', newItem)
+    apiAccess.apiPut('product', newItem)
       .then(res => {
         this.getItems();
       });

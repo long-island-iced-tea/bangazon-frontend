@@ -26,7 +26,7 @@ class customerPage extends React.Component {
 
     addcustomer = (newCustomer) => {
       apiAccess
-        .apiPost('customer/customer', newCustomer)
+        .apiPost('customers', newCustomer)
         .then(res => {
           this.getcustomers();
         });

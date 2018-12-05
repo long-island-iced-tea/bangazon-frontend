@@ -43,14 +43,14 @@ class ResourceItem extends React.Component {
     // Create table data from the values of the item
     const itemProps = Object.entries(item).map((kvp, i) => {
 
-      var v = kvp[1];
-      var k = kvp[0];
+      const v = kvp[1];
+      const k = kvp[0];
 
       // Do not allow editing of the id field
       if (k.toLowerCase() === 'id') {
         return (
           <td key={i}>{v}</td>
-        )
+        );
       }
       // If value is an array, display the count
       if (Array.isArray(v)) {
@@ -66,7 +66,7 @@ class ResourceItem extends React.Component {
           <td key={i}>
             <input type="checkbox" id={k} checked={this.state.item[k]} onChange={this.changeCheckbox} disabled={!this.state.isEditing}/>
           </td>
-        )
+        );
       }
       // If the value is a number, render a number input
       else if (typeof v === 'number') {
@@ -74,7 +74,7 @@ class ResourceItem extends React.Component {
           <td key={i}>
             <input type="number" id={k} value={this.state.item[k]} onChange={this.changeValue} disabled={!this.state.isEditing}/>
           </td>
-        )
+        );
       }
       return (
         <td key={i}>

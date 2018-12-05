@@ -1,5 +1,5 @@
 import React from 'react';
-import './ComputersPage.css';
+//import './ComputersPage.css';
 import apiAccess from '../../api-access/api';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import ResourceList from '../ResourceList/ResourceList';
@@ -36,6 +36,15 @@ class ComputersPage extends React.Component {
         this.getItems();
       });
   }
+
+  editComputer = (newcomputer) => {
+    apiAccess
+      .apiPut('computer', newcomputer)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='ComputersPage'>

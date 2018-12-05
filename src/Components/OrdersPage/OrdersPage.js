@@ -1,5 +1,5 @@
 import React from 'react';
-import './OrdersPage.css';
+//import './OrdersPage.css';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 
@@ -36,6 +36,14 @@ class OrdersPage extends React.Component {
         this.getItems();
       });
   }
+
+  editOrders = (newOrders) => {
+    apiAccess
+      .apiPut('orders', newOrders)
+      .then(res => {
+        this.getItems();
+      });
+  };
 
   render () {
     return (

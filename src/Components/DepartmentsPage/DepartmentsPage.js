@@ -1,5 +1,5 @@
 import React from 'react';
-import './DepartmentsPage.css';
+//import './DepartmentsPage.css';
 import apiAccess from '../../api-access/api';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
@@ -34,6 +34,15 @@ class DepartmentsPage extends React.Component {
         this.getItems();
       });
   }
+
+  editDepartments = (newDepartments) => {
+    apiAccess
+      .apiPut('departments', newDepartments)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='DepartmentsPage'>

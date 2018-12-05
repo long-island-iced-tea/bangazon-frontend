@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function indexButton(title) {
-  return (<button>{`${title}`}</button>);
+  return (<p>{`${title}`}</p>);
 }
 
 
@@ -12,7 +12,7 @@ class Navbar extends React.Component {
   render () {
     const myTitle = '/' + this.props.title;
     return (
-      <Link className="btn btn-primary" to={myTitle}>
+      <Link className = "custom btn btn-secondary"  to={myTitle}>
         {this.button}
       </Link>
     );

@@ -37,7 +37,7 @@ class DepartmentsPage extends React.Component {
 
   editDepartments = (newDepartments) => {
     apiAccess
-      .apiPut('departments', newDepartments)
+      .apiPut('department', newDepartments)
       .then(res => {
         this.getItems();
       });

@@ -39,7 +39,7 @@ class OrdersPage extends React.Component {
 
   editOrders = (newOrders) => {
     apiAccess
-      .apiPut('orders', newOrders)
+      .apiPut('orders/' + newOrders.id, newOrders)
       .then(res => {
         this.getItems();
       });

@@ -51,6 +51,7 @@ class customerPage extends React.Component {
     render () {
       return (
         <div className='customersPage'>
+          <h1>Customers</h1>
           <ResourceList resources={this.state.customers} deleteFunc={this.deletecustomer} editFunc={this.editcustomer}/>
           <AddItemForm objectModel={this.customerModel} addFunc={this.addcustomer}/>
         </div>

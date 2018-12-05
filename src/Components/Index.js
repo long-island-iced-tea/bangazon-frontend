@@ -10,7 +10,9 @@ class Navbar extends React.Component {
 
   button = indexButton(this.props.title);
   render () {
-    const myTitle = '/' + this.props.title;
+    const btnTitle = this.props.title;
+    const btnNoSpace = btnTitle.replace(/\s/g,'');
+    const myTitle = '/' + btnNoSpace;
     return (
       <Link className = "custom btn btn-secondary"  to={myTitle}>
         {this.button}

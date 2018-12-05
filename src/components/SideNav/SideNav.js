@@ -3,15 +3,15 @@ import './SideNav.css';
 import NavButton from '../Index';
 
 const buttonTitles = [
-  'customer',
-  'orders',
-  'products',
-  'employee',
-  'paymenttype',
-  'producttype',
-  'departments',
-  'computers',
-  'trainingprogram'
+  'Customer',
+  'Orders',
+  'Products',
+  'Employee',
+  'Payment Type',
+  'Product Type',
+  'Departments',
+  'Computers',
+  'Training Program'
 ];
 
 class SideNav extends React.Component {
@@ -25,7 +25,6 @@ class SideNav extends React.Component {
     });
     return (
       <div className="sidenav">
-        {/* <h1>Side Nav</h1> */}
         <p>
           {indexButtons}
         </p>

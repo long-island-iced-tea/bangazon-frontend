@@ -49,7 +49,12 @@ class DepartmentsPage extends React.Component {
   render () {
     return (
       <div className='DepartmentsPage'>
+<<<<<<< HEAD
+        <h1>Departments</h1>
+        <ResourceList resources={this.state.items} />
+=======
         <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editDepartments}/>
+>>>>>>> master
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
       </div>
     );

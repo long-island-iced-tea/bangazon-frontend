@@ -31,10 +31,18 @@ class TrainingProgramPage extends React.Component {
     });
   }
 
+  editProductType = (newTraining) => {
+    apiAccess
+      .apiPut('trainingprogram/' + newTraining.id, newTraining)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render() {
     return (
       <div>
-        <ResourceList resources={this.state.trainingprograms} />
+        <ResourceList resources={this.state.trainingprograms} editFunc={this.editProductType}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>
     );

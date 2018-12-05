@@ -37,10 +37,18 @@ class OrdersPage extends React.Component {
       });
   }
 
+  editOrders = (newOrders) => {
+    apiAccess
+      .apiPut('orders/' + newOrders.id, newOrders)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='OrdersPage'>
-        <ResourceList resources={this.state.items} />
+        <ResourceList resources={this.state.items}  editFunc={this.editOrders}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
       </div>
     );

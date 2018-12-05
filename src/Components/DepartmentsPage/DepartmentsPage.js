@@ -34,10 +34,19 @@ class DepartmentsPage extends React.Component {
         this.getItems();
       });
   }
+
+  editDepartments = (newDepartments) => {
+    apiAccess
+      .apiPut('department', newDepartments)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='DepartmentsPage'>
-        <ResourceList resources={this.state.items} />
+        <ResourceList resources={this.state.items}  editFunc={this.editDepartments}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
       </div>
     );

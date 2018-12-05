@@ -33,10 +33,17 @@ class ProductTypesPage extends React.Component {
       });
   }
 
+  editItem = (newItem) => {
+    apiAccess.apiPut('producttypes', newItem)
+      .then(res => {
+        this.getItems();
+      });
+  }
+
   render () {
     return (
       <div className='ProductTypesPage'>
-        <ResourceList resources={this.state.items}/>
+        <ResourceList resources={this.state.items} editFunc={this.editItem}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
       </div>
     );

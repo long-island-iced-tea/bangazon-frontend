@@ -36,11 +36,20 @@ class ComputersPage extends React.Component {
         this.getItems();
       });
   }
+
+  editComputer = (newcomputer) => {
+    apiAccess
+      .apiPut('computer/computer', newcomputer)
+      .then(res => {
+        this.getItems();
+      });
+  };
+
   render () {
     return (
       <div className='ComputersPage'>
+        <ResourceList resources={this.state.items} editFunc={this.editComputer}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
-        <ResourceList resources={this.state.items} />
       </div>
     );
   }

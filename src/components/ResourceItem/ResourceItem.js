@@ -84,13 +84,17 @@ class ResourceItem extends React.Component {
 
     });
 
+    const deleter = () => {
+      deleteFunc(this.props.item.id);
+    };
+
     return (
       <tr className='ResourceItem'>
         {itemProps}
         <td onClick={this.state.isEditing ? this.editItem : this.toggleEditing}>
           <i className="fas fa-edit"></i>
         </td>
-        <td onClick={deleteFunc}>
+        <td onClick={deleter}>
           <i className="fas fa-minus-circle"></i>
         </td>
       </tr>

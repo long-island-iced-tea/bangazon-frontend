@@ -40,7 +40,7 @@ class paymentTypePage extends React.Component {
 
     editpaymentType = (newPaymentType) => {
       apiAccess
-        .apiPut('PaymentType', newPaymentType)
+        .apiPut('paymenttype', newPaymentType)
         .then(res => {
           this.getpaymentTypes();
         });

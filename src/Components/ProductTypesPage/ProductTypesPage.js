@@ -33,6 +33,9 @@ class ProductTypesPage extends React.Component {
       });
   }
 
+  deleteItem = (id) => {
+    apiAccess.apiDelete(`producttypes/${id}`).then(x => this.getItems()).catch(err => console.error(err));
+  }
   editItem = (newItem) => {
     apiAccess.apiPut('producttypes', newItem)
       .then(res => {
@@ -43,7 +46,7 @@ class ProductTypesPage extends React.Component {
   render () {
     return (
       <div className='ProductTypesPage'>
-        <ResourceList resources={this.state.items} editFunc={this.editItem}/>
+        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editItem}/>
         <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
       </div>
     );

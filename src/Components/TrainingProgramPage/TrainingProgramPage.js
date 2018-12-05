@@ -31,6 +31,9 @@ class TrainingProgramPage extends React.Component {
     });
   }
 
+  deleteTrainingProgram = (id) => {
+    apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => alert(err.response.data.error));
+  }
   editProductType = (newTraining) => {
     apiAccess
       .apiPut('trainingprogram/' + newTraining.id, newTraining)
@@ -42,7 +45,7 @@ class TrainingProgramPage extends React.Component {
   render() {
     return (
       <div>
-        <ResourceList resources={this.state.trainingprograms} editFunc={this.editProductType}/>
+        <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editProductType}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>
     );

@@ -33,11 +33,7 @@ class customerPage extends React.Component {
     }
 
     deletecustomer = (id) => {
-      apiAccess
-        .apiDelete('customer/' + id)
-        .then(res => {
-          this.getcustomers();
-        });
+      alert('Customers cannot be deleted.');
     }
 
     editcustomer = (newcustomer) => {

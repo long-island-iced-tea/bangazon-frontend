@@ -25,3 +25,4 @@ yarn-error.log*
 # custom
 **/*.css
 config.json
+package-lock.json

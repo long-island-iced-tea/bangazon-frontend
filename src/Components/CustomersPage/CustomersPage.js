@@ -54,16 +54,11 @@ class customerPage extends React.Component {
 
     render () {
       return (
-        <React.Fragment>
-        <div className='header'>
+        <div className='customersPage'>
           <h1>Customers</h1>
-          </div>
-          <div className="content">
           <ResourceList resources={this.state.customers} deleteFunc={this.deletecustomer} editFunc={this.editcustomer}/>
-          </div>
           <AddItemForm objectModel={this.customerModel} addFunc={this.addcustomer}/>
-        
-        </React.Fragment>
+        </div>
       );
     }
 }

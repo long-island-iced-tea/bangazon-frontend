@@ -50,7 +50,6 @@ class DepartmentsPage extends React.Component {
     return (
       <div className='DepartmentsPage'>
         <h1>Departments</h1>
-        <ResourceList resources={this.state.items} />
         <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editDepartments}/>
 
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />

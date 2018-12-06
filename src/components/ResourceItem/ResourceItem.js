@@ -37,8 +37,12 @@ class ResourceItem extends React.Component {
     this.toggleEditing();
   }
 
+  deleter = () => {
+    this.props.deleteFunc(this.props.item.id);
+  }
+
   render () {
-    const {item, deleteFunc} = this.props;
+    const {item} = this.props;
 
     // Create table data from the values of the item
     const itemProps = Object.entries(item).map((kvp, i) => {
@@ -84,9 +88,6 @@ class ResourceItem extends React.Component {
 
     });
 
-    const deleter = () => {
-      deleteFunc(this.props.item.id);
-    };
 
     return (
       <tr className='ResourceItem'>
@@ -94,7 +95,7 @@ class ResourceItem extends React.Component {
         <td onClick={this.state.isEditing ? this.editItem : this.toggleEditing}>
           <i className="fas fa-edit"></i>
         </td>
-        <td onClick={deleter}>
+        <td onClick={this.deleter}>
           <i className="fas fa-minus-circle"></i>
         </td>
       </tr>

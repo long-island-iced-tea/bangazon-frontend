@@ -8,9 +8,9 @@ const objectModel = {
   id: 0,
   purchasedAt: '',
   decommissionedAt: '',
-  createdAt: '',
   isNew: false,
-  isWorking: true
+  isWorking: true,
+  employeeId: 0
 };
 
 class ComputersPage extends React.Component {

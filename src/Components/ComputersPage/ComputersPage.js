@@ -18,17 +18,36 @@ const objectModel = {
 class ComputersPage extends React.Component {
 
   state = {
-    items: []
+    items: [],
+    make: "",
+    model: ""
   }
 
   componentDidMount() {
     this.getItems();
   }
 
+  createMakeOptions = (items) => {
+    this.makes = items.reduce((makes, computer) => {
+      if (!makes.includes(computer.make) && computer.make != null) {
+        makes.push(computer.make);
+      }
+      return makes;
+    }, [])
+      .map(make => {
+        return (
+          <option key={make} value={make}>
+            {make}
+          </option>
+        )
+      });
+  }
+
   getItems = () => {
     apiAccess.apiGet('computer')
       .then(res => {
-        this.setState({items: res.data});
+        this.createMakeOptions(res.data);
+        this.setState({ items: res.data });
       });
   }
 
@@ -51,12 +70,32 @@ class ComputersPage extends React.Component {
       });
   };
 
-  render () {
+  setMake = (e) => {
+    this.setState({
+      make: e.target.value,
+    });
+  }
+
+  filterItems = (computer) => {
+    if (this.state.make != "") {
+      return computer.make === this.state.make;
+    }
+    else if (this.state.model != "") {
+      return computer.model === this.state.model;
+    }
+    return computer;
+  }
+
+  render() {
+
     return (
       <div className='ComputersPage'>
         <h1>Computers</h1>
-        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editComputer}/>
-
+        <select id="make" onChange={this.setMake}>
+          <option value="">Select a make:</option>
+          {this.makes}
+        </select>
+        <ResourceList resources={this.state.items.filter(this.filterItems)} deleteFunc={this.deleteItem} editFunc={this.editComputer} />
         <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
       </div>
     );

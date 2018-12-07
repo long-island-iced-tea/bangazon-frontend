@@ -10,7 +10,9 @@ const objectModel = {
   decommissionedAt: '',
   createdAt: '',
   isNew: false,
-  isWorking: true
+  isWorking: true,
+  make: '',
+  model: ''
 };
 
 class ComputersPage extends React.Component {

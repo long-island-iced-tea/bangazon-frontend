@@ -19,51 +19,20 @@ class ComputersPage extends React.Component {
 
   state = {
     items: [],
-    make: "",
-    model: ""
+    filter: {
+      make: "",
+      model: ""
+    }
   }
 
   componentDidMount() {
     this.getItems();
   }
 
-  createMakeOptions = (items) => {
-    this.makes = items.reduce((makes, computer) => {
-      if (!makes.includes(computer.make) && computer.make != null) {
-        makes.push(computer.make);
-      }
-      return makes;
-    }, [])
-      .map(make => {
-        return (
-          <option key={make} value={make}>
-            {make}
-          </option>
-        )
-      });
-  }
-
-  createModelOptions = (items) => {
-    this.models = items.reduce((models, computer) => {
-      if (!models.includes(computer.model) && computer.model != null) {
-        models.push(computer.model);
-      }
-      return models;
-    }, [])
-      .map(model => {
-        return (
-          <option key={model} value={model}>
-            {model}
-          </option>
-        )
-      });
-  }
-
   getItems = () => {
     apiAccess.apiGet('computer')
       .then(res => {
-        this.createModelOptions(res.data);
-        this.createMakeOptions(res.data);
+        this.createOptions(res.data);
         this.setState({ items: res.data });
       });
   }
@@ -85,30 +54,57 @@ class ComputersPage extends React.Component {
       .then(res => {
         this.getItems();
       });
-  };
-
-  setMake = (e) => {
-    this.setState({
-      make: e.target.value,
-    });
   }
 
-  setModel = (e) => {
-    this.setState({
-      model: e.target.value,
-    });
+  createOptions = (items) => {
+
+    this.makes = items.reduce((makes, computer) => {
+      if (!makes.includes(computer.make) && computer.make != null) {
+        makes.push(computer.make);
+      }
+      return makes;
+    }, [])
+      .map(make => {
+        return (
+          <option key={make} value={make}>
+            {make}
+          </option>
+        )
+      });
+
+    this.models = items.reduce((models, computer) => {
+      if (!models.includes(computer.model) && computer.model != null) {
+        models.push(computer.model);
+      }
+      return models;
+    }, [])
+      .map(model => {
+        return (
+          <option key={model} value={model}>
+            {model}
+          </option>
+        )
+      });
+  }
+
+  setFilter = (e) => {
+    const {filter} = {...this.state};
+    filter[e.target.id] = e.target.value;
+    this.setState({ filter });
   }
 
   filterItems = (computer) => {
-    if (this.state.make !== "" && this.state.model !== "") {
-      return computer.make === this.state.make
-            && computer.model === this.state.model;
+    const {filter} = this.state;
+
+    if (filter.make !== "" && filter.model !== "") {
+      return computer.make === filter.make
+            && computer.model === filter.model;
     }
-    else if (this.state.make !== "") {
-      return computer.make === this.state.make;
+    else if (filter.make !== "") {
+      return computer.make === filter.make;
     }
-    else if (this.state.model !== "") {
-      return computer.model === this.state.model;
+    else if (filter.model !== "") {
+      return computer.model === filter.model;
     }
     return computer;
   }
@@ -118,11 +114,11 @@ class ComputersPage extends React.Component {
     return (
       <div className='ComputersPage'>
         <h1>Computers</h1>
-        <select id="make" onChange={this.setMake}>
+        <select id="make" onChange={this.setFilter}>
           <option value="">Select a make:</option>
           {this.makes}
         </select>
-        <select id="model" onChange={this.setModel}>
+        <select id="model" onChange={this.setFilter}>
           <option value="">Select a model:</option>
           {this.models}
         </select>

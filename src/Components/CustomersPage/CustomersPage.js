@@ -5,22 +5,33 @@ import apiAccess from '../../api-access/api';
 
 class customerPage extends React.Component {
     state = {
-      customers: []
+      customers: [],
+      objectModel : {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        departmentId: [],
+        createdAt: '',
+        isActive: false
+      }
     }
 
-    customerModel = {
-      id: 0,
-      firstName: '',
-      lastName: '',
-      departmentId: 0,
-      createdAt: '',
-      isActive: false
-    }
 
     getcustomers = () => {
       apiAccess.apiGet('customers')
         .then(res => {
           this.setState({customers: res.data});
+        });
+    }
+
+    getDepartments = () => {
+
+      const {objectModel} = {...this.state};
+
+      apiAccess.apiGet('department')
+        .then(res => {
+          objectModel.departmentId = res.data.map(d => d.id + ' ' + d.name);
+          this.setState({...this.state, objectModel});
         });
     }
 
@@ -46,6 +57,7 @@ class customerPage extends React.Component {
 
     componentDidMount () {
       this.getcustomers();
+      this.getDepartments();
     }
 
     render () {
@@ -53,7 +65,7 @@ class customerPage extends React.Component {
         <div className='customersPage'>
           <h1>Customers</h1>
           <ResourceList resources={this.state.customers} deleteFunc={this.deletecustomer} editFunc={this.editcustomer}/>
-          <AddItemForm objectModel={this.customerModel} addFunc={this.addcustomer}/>
+          <AddItemForm objectModel={this.state.objectModel} addFunc={this.addcustomer}/>
         </div>
       );
     }

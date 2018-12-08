@@ -88,7 +88,6 @@ class ResourceItem extends React.Component {
 
     });
 
-
     return (
       <tr className='ResourceItem'>
         {itemProps}

@@ -40,6 +40,26 @@ class AddItemForm extends React.Component {
         type = 'number';
         break;
 
+      case 'object':
+        if (Array.isArray(objectModel[key])) {
+          return (
+            <div className="form-group">
+              <label htmlFor={key}>{key}</label>
+              <select className="custom-select" id={key} onChange={(e) => console.log(e.target.value)}>
+                {
+                  objectModel[key].map(o => {
+                    return (
+                      <option key={o}>
+                        {o}
+                      </option>
+                    );
+                  })
+                }
+              </select>
+            </div>
+          )
+        }
+        break;
       case 'boolean':
         return (
           <div key={key} className="form-group">

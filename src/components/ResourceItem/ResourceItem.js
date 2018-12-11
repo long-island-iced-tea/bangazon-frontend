@@ -44,6 +44,8 @@ class ResourceItem extends React.Component {
   render () {
     const {item} = this.props;
 
+    const objectModel = this.props.objectModel || {};
+
     // Create table data from the values of the item
     const itemProps = Object.entries(item).map((kvp, i) => {
 
@@ -56,8 +58,28 @@ class ResourceItem extends React.Component {
           <td key={i}>{v}</td>
         );
       }
+      if (Array.isArray(v) && Object.keys(objectModel).includes(k)) {
+        return (
+        <td key={i}>
+          {
+            <div className="form-group">
+              <label>{k}</label>
+              <select className="custom-select">
+                <option></option>
+                  {
+                    v.map(item => {
+                      return (
+                        <option key={item} value={item}>{item}</option>
+                      )
+                    })
+                  }
+              </select>
+            </div>
+          }
+        </td>);
+      }
       // If value is an array, display the count
-      if (Array.isArray(v)) {
+      if (Array.isArray(v) && !Object.keys(objectModel).includes(k)) {
         return (<td key={i}>{'Count: ' + v.length}</td>);
       }
       // If value is an object, stringify it

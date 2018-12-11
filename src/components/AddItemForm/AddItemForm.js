@@ -46,6 +46,7 @@ class AddItemForm extends React.Component {
             <div className="form-group">
               <label htmlFor={key}>{key}</label>
               <select className="custom-select" id={key} onChange={(e) => console.log(e.target.value)}>
+              <option></option>
                 {
                   objectModel[key].map(o => {
                     return (
@@ -79,7 +80,7 @@ class AddItemForm extends React.Component {
       return (
         <div key={key} className="form-group">
           <label htmlFor={key}>{key}</label>
-          <input type={type} className="form-control" id={key} required />
+          <input type={type} className="form-control" id={key} />
         </div>
       );
     });
@@ -110,6 +111,7 @@ class AddItemForm extends React.Component {
     });
 
     this.props.addFunc(newItem);
+    this.toggleAdding();
   }
 
   render () {

@@ -58,7 +58,7 @@ class ResourceItem extends React.Component {
           <td key={i}>{v}</td>
         );
       }
-      if (Array.isArray(v) && Object.keys(objectModel).includes(k)) {
+      if (Array.isArray(objectModel[k])) {
         return (
         <td key={i}>
           {
@@ -67,7 +67,7 @@ class ResourceItem extends React.Component {
               <select className="custom-select">
                 <option></option>
                   {
-                    v.map(item => {
+                    objectModel[k].map(item => {
                       return (
                         <option key={item} value={item}>{item}</option>
                       )

@@ -35,11 +35,11 @@ class TrainingProgramPage extends React.Component {
   deleteTrainingProgram = (id) => {
     apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => alert(err.response.data.error));
   }
-  editProductType = (newTraining) => {
+  editTrainingProgram = (newTraining) => {
     apiAccess
       .apiPut('trainingprogram/' + newTraining.id, newTraining)
       .then(res => {
-        this.getItems();
+        this.getallResources();
       });
   };
 

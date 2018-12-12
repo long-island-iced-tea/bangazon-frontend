@@ -5,20 +5,19 @@ import apiAccess from '../../api-access/api';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 
-const objectModel = {
-  id: 0,
-  name: '',
-  description: '',
-  price: 0,
-  quantity: 0,
-  customerId: 0,
-  productType: 0
-};
-
 class ProductsPage extends React.Component {
 
   state = {
     items: [],
+    objectModel: {
+      id: 0,
+      name: '',
+      description: '',
+      price: 0,
+      quantity: 0,
+      customerId: [],
+      productType: []
+    }
   }
 
   getItems = () => {
@@ -50,16 +49,36 @@ class ProductsPage extends React.Component {
       });
   }
 
+  getCustomers = () => {
+    apiAccess
+      .apiGet('customers')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.customerId = res.data.map(i => i.id);
+        this.setState({objectModel});
+      })
+  }
+  getProducttypes = () => {
+    apiAccess
+      .apiGet('producttypes')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.productType = res.data.map(i => i.id);
+        this.setState({objectModel});
+      })
+  }
   componentDidMount() {
     this.getItems();
+    this.getProducttypes();
+    this.getCustomers();
   }
 
   render () {
     return (
       <div className='ProductsPage'>
         <h1>Products</h1>
-        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editItem}/>
-        <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
+        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editItem} objectModel={this.state.objectModel}/>
+        <AddItemForm objectModel={this.state.objectModel} addFunc={this.addItem}/>
       </div>
     );
   }

@@ -4,21 +4,20 @@ import apiAccess from '../../api-access/api';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import ResourceList from '../ResourceList/ResourceList';
 
-const objectModel = {
-  id: 0,
-  purchasedAt: '',
-  decommissionedAt: '',
-  isNew: false,
-  isWorking: true,
-  make: '',
-  model: '',
-  employeeId: 0
-};
 
 class ComputersPage extends React.Component {
 
   state = {
     items: [],
+    objectModel : {
+      id: 0,
+      purchasedAt: '',
+      isNew: false,
+      isWorking: true,
+      make: '',
+      model: '',
+      employeeId: []
+    },
     filter: {
       make: "",
       model: ""
@@ -27,6 +26,7 @@ class ComputersPage extends React.Component {
 
   componentDidMount() {
     this.getItems();
+    this.getEmployees();
   }
 
   getItems = () => {
@@ -34,6 +34,14 @@ class ComputersPage extends React.Component {
       .then(res => {
         this.createOptions(res.data);
         this.setState({ items: res.data });
+      });
+  }
+  getEmployees = () => {
+    apiAccess.apiGet('employee')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.employeeId = res.data.map(i => i.id);
+        this.setState({objectModel})
       });
   }
 
@@ -122,8 +130,8 @@ class ComputersPage extends React.Component {
           <option value="">Select a model:</option>
           {this.models}
         </select>
-        <ResourceList resources={this.state.items.filter(this.filterItems)} deleteFunc={this.deleteItem} editFunc={this.editComputer} />
-        <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
+        <ResourceList resources={this.state.items.filter(this.filterItems)} deleteFunc={this.deleteItem} editFunc={this.editComputer} objectModel={this.state.objectModel} />
+        <AddItemForm objectModel={this.state.objectModel} addFunc={this.addItem} />
       </div>
     );
   }

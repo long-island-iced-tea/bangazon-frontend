@@ -11,7 +11,6 @@ class customerPage extends React.Component {
         id: 0,
         firstName: '',
         lastName: '',
-        departmentId: [],
         createdAt: moment(),
         isActive: false
       }
@@ -24,17 +23,6 @@ class customerPage extends React.Component {
           const data = res.data;
           data.forEach(customer => customer.createdAt = moment(customer.createdAt));
           this.setState({customers: data});
-        });
-    }
-
-    getDepartments = () => {
-
-      const {objectModel} = {...this.state};
-
-      apiAccess.apiGet('department')
-        .then(res => {
-          objectModel.departmentId = res.data.map(d => d.id + ' ' + d.name);
-          this.setState({...this.state, objectModel});
         });
     }
 
@@ -61,7 +49,6 @@ class customerPage extends React.Component {
 
     componentDidMount () {
       this.getcustomers();
-      this.getDepartments();
     }
 
     render () {

@@ -43,15 +43,25 @@ class TrainingProgramPage extends React.Component {
   deleteTrainingProgram = (id) => {
     apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => alert(err.response.data.error));
   }
+
   editTrainingProgram = (newTraining) => {
-    newTraining.startDate = newTraining.startDate.format();
-    newTraining.endDate = newTraining.endDate.format();
-    apiAccess
+
+    if (newTraining.startDate.isAfter() && newTraining.endDate.isAfter()) {
+      newTraining.startDate = newTraining.startDate.format();
+      newTraining.endDate = newTraining.endDate.format();
+      apiAccess
       .apiPut('trainingprogram/' + newTraining.id, newTraining)
       .then(res => {
         this.getAllResources();
       });
-  };
+    } else if (newTraining.startDate.isBefore() && newTraining.endDate.isAfter()) {
+      alert("This training program is currently underway and cannot be edited.");
+    } else if (newTraining.startDate.isAfter() && newTraining.endDate.isBefore()) {
+      alert("There is something screwy about your dates.");
+    } else {
+      alert("This training program has already occured and cannot be edited.");
+    }
+  }
 
   render() {
     return (

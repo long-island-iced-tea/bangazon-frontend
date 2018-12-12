@@ -1,5 +1,5 @@
 import React from 'react';
-//import './TrainingProgramPage.css';
+import './TrainingProgramPage.css';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
@@ -47,6 +47,8 @@ class TrainingProgramPage extends React.Component {
     return (
       <div className="TrainingProgramPage">
         <h1>Training Programs</h1>
+        <button className="btn btn-secondary upcoming">Upcoming</button>
+        <button className="btn btn-secondary completed">Completed</button>
         <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editProductType}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>

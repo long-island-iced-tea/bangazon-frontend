@@ -10,7 +10,6 @@ class customerPage extends React.Component {
         id: 0,
         firstName: '',
         lastName: '',
-        departmentId: [],
         createdAt: '',
         isActive: false
       }
@@ -21,17 +20,6 @@ class customerPage extends React.Component {
       apiAccess.apiGet('customers')
         .then(res => {
           this.setState({customers: res.data});
-        });
-    }
-
-    getDepartments = () => {
-
-      const {objectModel} = {...this.state};
-
-      apiAccess.apiGet('department')
-        .then(res => {
-          objectModel.departmentId = res.data.map(d => d.id + ' ' + d.name);
-          this.setState({...this.state, objectModel});
         });
     }
 
@@ -57,7 +45,6 @@ class customerPage extends React.Component {
 
     componentDidMount () {
       this.getcustomers();
-      this.getDepartments();
     }
 
     render () {

@@ -3,6 +3,7 @@ import React from 'react';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
+import moment from 'moment';
 
 class TrainingProgramPage extends React.Component {
 
@@ -13,13 +14,20 @@ class TrainingProgramPage extends React.Component {
   trainingProgramModel = {
     id: 0,
     name: '',
-    startDate: '',
-    endDate: '',
+    startDate: moment(),
+    endDate: moment(),
     maxAttendees: 0
   }
 
   getAllResources = () => {
-    apiAccess.apiGet('trainingprogram').then(tp => this.setState({ trainingprograms: tp.data }));
+    apiAccess.apiGet('trainingprogram').then(res => {
+      const data = res.data;
+      data.forEach(tp => {
+        tp.startDate = moment(tp.startDate);
+        tp.endDate = moment(tp.endDate);
+      });
+      this.setState({ trainingprograms: data });
+    });
   }
 
   componentDidMount() {
@@ -35,11 +43,13 @@ class TrainingProgramPage extends React.Component {
   deleteTrainingProgram = (id) => {
     apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => alert(err.response.data.error));
   }
-  editProductType = (newTraining) => {
+  editTrainingProgram = (newTraining) => {
+    newTraining.startDate = newTraining.startDate.format();
+    newTraining.endDate = newTraining.endDate.format();
     apiAccess
       .apiPut('trainingprogram/' + newTraining.id, newTraining)
       .then(res => {
-        this.getItems();
+        this.getAllResources();
       });
   };
 
@@ -47,7 +57,7 @@ class TrainingProgramPage extends React.Component {
     return (
       <div className="TrainingProgramPage">
         <h1>Training Programs</h1>
-        <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editProductType}/>
+        <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editTrainingProgram}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>
     );

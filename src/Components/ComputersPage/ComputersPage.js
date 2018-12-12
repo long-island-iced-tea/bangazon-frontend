@@ -3,6 +3,7 @@ import React from 'react';
 import apiAccess from '../../api-access/api';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import ResourceList from '../ResourceList/ResourceList';
+import moment from 'moment';
 
 
 class ComputersPage extends React.Component {
@@ -11,7 +12,7 @@ class ComputersPage extends React.Component {
     items: [],
     objectModel : {
       id: 0,
-      purchasedAt: '',
+      purchasedAt: moment(),
       isNew: false,
       isWorking: true,
       make: '',
@@ -32,8 +33,10 @@ class ComputersPage extends React.Component {
   getItems = () => {
     apiAccess.apiGet('computer')
       .then(res => {
-        this.createOptions(res.data);
-        this.setState({ items: res.data });
+        const data = res.data;
+        data.forEach(computer => computer.purchasedAt = moment(computer.purchasedAt));
+        this.createOptions(data);
+        this.setState({ items: data });
       });
   }
   getEmployees = () => {
@@ -57,6 +60,7 @@ class ComputersPage extends React.Component {
   }
 
   editComputer = (newcomputer) => {
+    newcomputer.purchasedAt = newcomputer.purchasedAt.format();
     apiAccess
       .apiPut('computer/computer', newcomputer)
       .then(res => {

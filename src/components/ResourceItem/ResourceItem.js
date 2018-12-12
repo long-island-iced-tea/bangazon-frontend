@@ -58,19 +58,19 @@ class ResourceItem extends React.Component {
           <td key={i}>{v}</td>
         );
       }
+      // If the object model has an array of possible options, create them
       if (Array.isArray(objectModel[k])) {
         return (
         <td key={i}>
           {
             <div className="form-group">
-              <label>{k}</label>
-              <select className="custom-select">
+              <select id={k} className="custom-select" disabled={!this.state.isEditing}>
                 <option></option>
                   {
                     objectModel[k].map(item => {
                       return (
-                        <option key={item} value={item}>{item}</option>
-                      )
+                        <option key={item} value={item} selected={v === item ? v : null}>{item}</option>
+                      );
                     })
                   }
               </select>
@@ -79,12 +79,16 @@ class ResourceItem extends React.Component {
         </td>);
       }
       // If value is an array, display the count
-      if (Array.isArray(v) && !Object.keys(objectModel).includes(k)) {
-        return (<td key={i}>{'Count: ' + v.length}</td>);
+      if (Array.isArray(v)) {
+        return (
+          <td key={i}>{'Count: ' + v.length}</td>
+        );
       }
       // If value is an object, stringify it
       else if (typeof v === 'object' && !Array.isArray(v)) {
-        return (<td key={i}>{JSON.stringify(v)}</td>);
+        return (
+          <td key={i}>{JSON.stringify(v)}</td>
+        );
       }
       // If value is a boolean, render a checkbox
       else if (typeof v === 'boolean') {

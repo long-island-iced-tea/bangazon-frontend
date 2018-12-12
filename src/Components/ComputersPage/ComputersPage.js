@@ -13,6 +13,7 @@ class ComputersPage extends React.Component {
     objectModel : {
       id: 0,
       purchasedAt: moment(),
+      decommissionedAt: moment(),
       isNew: false,
       isWorking: true,
       make: '',

@@ -35,19 +35,31 @@ class TrainingProgramPage extends React.Component {
   deleteTrainingProgram = (id) => {
     apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => alert(err.response.data.error));
   }
+
   editTrainingProgram = (newTraining) => {
-    apiAccess
+    var moment = require('moment');
+    moment().format();
+
+    if (moment(newTraining.startDate).isAfter() && moment(newTraining.endDate).isAfter()){
+      apiAccess
       .apiPut('trainingprogram/' + newTraining.id, newTraining)
       .then(res => {
-        this.getallResources();
+        this.getAllResources();
       });
+    } else if (moment(newTraining.startDate).isBefore() && moment(newTraining.endDate).isAfter()) {
+      alert("This training program is currently underway and cannot be edited.")
+    }else if (moment(newTraining.startDate).isAfter() && moment(newTraining.endDate).isBefore()) {
+      alert("There is something screwy about your dates.")
+    } else {
+      alert("This training program has already occured and cannot be edited.")
+    }
   };
 
   render() {
     return (
       <div className="TrainingProgramPage">
         <h1>Training Programs</h1>
-        <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editProductType}/>
+        <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editTrainingProgram}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>
     );

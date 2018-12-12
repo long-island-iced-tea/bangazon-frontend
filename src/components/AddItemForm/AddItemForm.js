@@ -1,6 +1,7 @@
 import React from 'react';
 import './AddItemForm.css';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 class AddItemForm extends React.Component {
 
@@ -40,6 +41,30 @@ class AddItemForm extends React.Component {
         type = 'number';
         break;
 
+      case 'object':
+        if (objectModel[key] instanceof moment) {
+          type = 'date';
+        }
+        else if (Array.isArray(objectModel[key])) {
+          return (
+            <div className="form-group">
+              <label htmlFor={key}>{key}</label>
+              <select className="custom-select" id={key} onChange={(e) => console.log(e.target.value)}>
+              <option></option>
+                {
+                  objectModel[key].map(o => {
+                    return (
+                      <option key={o}>
+                        {o}
+                      </option>
+                    );
+                  })
+                }
+              </select>
+            </div>
+          )
+        }
+        break;
       case 'boolean':
         return (
           <div key={key} className="form-group">
@@ -59,7 +84,7 @@ class AddItemForm extends React.Component {
       return (
         <div key={key} className="form-group">
           <label htmlFor={key}>{key}</label>
-          <input type={type} className="form-control" id={key} required />
+          <input type={type} className="form-control" id={key} />
         </div>
       );
     });
@@ -90,6 +115,7 @@ class AddItemForm extends React.Component {
     });
 
     this.props.addFunc(newItem);
+    this.toggleAdding();
   }
 
   render () {

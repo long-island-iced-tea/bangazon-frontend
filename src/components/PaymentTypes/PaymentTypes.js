@@ -6,15 +6,14 @@ import apiAccess from '../../api-access/api';
 class paymentTypePage extends React.Component {
 
     state = {
-      paymentTypes: []
+      paymentTypes: [],
+      objectModel: {
+        id: 0,
+        customerId: [],
+        accountNum: 0,
+        type: ''
+      }
     }
-
-    paymentTypeModel = {
-      id: 0,
-      customerId: 0,
-      accountNum: 0,
-      type: ''
-    };
 
     getpaymentTypes = () => {
       apiAccess.apiGet('paymenttype')
@@ -45,17 +44,26 @@ class paymentTypePage extends React.Component {
           this.getpaymentTypes();
         });
     };
-
+    getCustomers = () => {
+      apiAccess
+        .apiGet('customers')
+        .then(res => {
+          const {objectModel} = {...this.state};
+          objectModel.customerId = res.data.map(i => i.id);
+          this.setState({objectModel});
+        });
+    }
     componentDidMount () {
       this.getpaymentTypes();
+      this.getCustomers();
     }
 
     render () {
       return (
         <div className='paymentTypesPage'>
           <h1>Payment Types</h1>
-          <ResourceList resources={this.state.paymentTypes} deleteFunc={this.deletepaymentType} editFunc={this.editpaymentType}/>
-          <AddItemForm objectModel={this.paymentTypeModel} addFunc={this.addpaymentType}/>
+          <ResourceList resources={this.state.paymentTypes} deleteFunc={this.deletepaymentType} editFunc={this.editpaymentType} objectModel={this.state.objectModel}/>
+          <AddItemForm objectModel={this.state.objectModel} addFunc={this.addpaymentType}/>
         </div>
       );
     }

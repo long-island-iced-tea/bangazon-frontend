@@ -3,22 +3,23 @@ import React from 'react';
 import apiAccess from '../../api-access/api';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import ResourceList from '../ResourceList/ResourceList';
+import moment from 'moment';
 
-const objectModel = {
-  id: 0,
-  purchasedAt: '',
-  decommissionedAt: '',
-  isNew: false,
-  isWorking: true,
-  make: '',
-  model: '',
-  employeeId: 0
-};
 
 class ComputersPage extends React.Component {
 
   state = {
     items: [],
+    objectModel : {
+      id: 0,
+      purchasedAt: moment(),
+      decommissionedAt: moment(),
+      isNew: false,
+      isWorking: true,
+      make: '',
+      model: '',
+      employeeId: []
+    },
     filter: {
       make: "",
       model: ""
@@ -27,13 +28,24 @@ class ComputersPage extends React.Component {
 
   componentDidMount() {
     this.getItems();
+    this.getEmployees();
   }
 
   getItems = () => {
     apiAccess.apiGet('computer')
       .then(res => {
-        this.createOptions(res.data);
-        this.setState({ items: res.data });
+        const data = res.data;
+        data.forEach(computer => computer.purchasedAt = moment(computer.purchasedAt));
+        this.createOptions(data);
+        this.setState({ items: data });
+      });
+  }
+  getEmployees = () => {
+    apiAccess.apiGet('employee')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.employeeId = res.data.map(i => i.id);
+        this.setState({objectModel})
       });
   }
 
@@ -49,6 +61,7 @@ class ComputersPage extends React.Component {
   }
 
   editComputer = (newcomputer) => {
+    newcomputer.purchasedAt = newcomputer.purchasedAt.format();
     apiAccess
       .apiPut('computer/computer', newcomputer)
       .then(res => {
@@ -122,8 +135,8 @@ class ComputersPage extends React.Component {
           <option value="">Select a model:</option>
           {this.models}
         </select>
-        <ResourceList resources={this.state.items.filter(this.filterItems)} deleteFunc={this.deleteItem} editFunc={this.editComputer} />
-        <AddItemForm objectModel={objectModel} addFunc={this.addItem} />
+        <ResourceList resources={this.state.items.filter(this.filterItems)} deleteFunc={this.deleteItem} editFunc={this.editComputer} objectModel={this.state.objectModel} />
+        <AddItemForm objectModel={this.state.objectModel} addFunc={this.addItem} />
       </div>
     );
   }

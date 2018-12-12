@@ -3,6 +3,7 @@ import React from 'react';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
+import moment from 'moment';
 
 class TrainingProgramPage extends React.Component {
 
@@ -13,13 +14,20 @@ class TrainingProgramPage extends React.Component {
   trainingProgramModel = {
     id: 0,
     name: '',
-    startDate: '',
-    endDate: '',
+    startDate: moment(),
+    endDate: moment(),
     maxAttendees: 0
   }
 
   getAllResources = () => {
-    apiAccess.apiGet('trainingprogram').then(tp => this.setState({ trainingprograms: tp.data }));
+    apiAccess.apiGet('trainingprogram').then(res => {
+      const data = res.data;
+      data.forEach(tp => {
+        tp.startDate = moment(tp.startDate);
+        tp.endDate = moment(tp.endDate);
+      });
+      this.setState({ trainingprograms: data });
+    });
   }
 
   componentDidMount() {
@@ -37,23 +45,23 @@ class TrainingProgramPage extends React.Component {
   }
 
   editTrainingProgram = (newTraining) => {
-    var moment = require('moment');
-    moment().format();
 
-    if (moment(newTraining.startDate).isAfter() && moment(newTraining.endDate).isAfter()){
+    if (newTraining.startDate.isAfter() && newTraining.endDate.isAfter()) {
+      newTraining.startDate = newTraining.startDate.format();
+      newTraining.endDate = newTraining.endDate.format();
       apiAccess
       .apiPut('trainingprogram/' + newTraining.id, newTraining)
       .then(res => {
         this.getAllResources();
       });
-    } else if (moment(newTraining.startDate).isBefore() && moment(newTraining.endDate).isAfter()) {
-      alert("This training program is currently underway and cannot be edited.")
-    }else if (moment(newTraining.startDate).isAfter() && moment(newTraining.endDate).isBefore()) {
-      alert("There is something screwy about your dates.")
+    } else if (newTraining.startDate.isBefore() && newTraining.endDate.isAfter()) {
+      alert("This training program is currently underway and cannot be edited.");
+    } else if (newTraining.startDate.isAfter() && newTraining.endDate.isBefore()) {
+      alert("There is something screwy about your dates.");
     } else {
-      alert("This training program has already occured and cannot be edited.")
+      alert("This training program has already occured and cannot be edited.");
     }
-  };
+  }
 
   render() {
     return (

@@ -5,22 +5,24 @@ import AddItemForm from '../AddItemForm/AddItemForm';
 
 import apiAccess from '../../api-access/api';
 
-const objectModel = {
-  id: 0,
-  customerId: 0,
-  paymentType: 0,
-  completed: true,
-  isActive: true
-};
 
 class OrdersPage extends React.Component {
 
   state = {
-    items: []
+    items: [],
+    objectModel: {
+      id: 0,
+      customerId: [],
+      paymentType: [],
+      completed: true,
+      isActive: true
+    }
   }
 
   componentDidMount() {
     this.getItems();
+    this.getPayments();
+    this.getCustomers();
   }
 
   getItems = () => {
@@ -50,13 +52,31 @@ class OrdersPage extends React.Component {
         this.getItems();
       });
   };
+  getPayments = () => {
+    apiAccess
+      .apiGet('paymenttype')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.paymentType = res.data.map(i => i.id);
+        this.setState({objectModel});
+      })
+  }
+  getCustomers = () => {
+    apiAccess
+      .apiGet('customers')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.customerId = res.data.map(i => i.id);
+        this.setState({objectModel});
+      })
+  }
 
   render () {
     return (
       <div className='OrdersPage'>
         <h1>Orders</h1>
-        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editOrders}/>
-        <AddItemForm objectModel={objectModel} addFunc={this.addItem}/>
+        <ResourceList resources={this.state.items} deleteFunc={this.deleteItem} editFunc={this.editOrders} objectModel={this.state.objectModel}/>
+        <AddItemForm objectModel={this.state.objectModel} addFunc={this.addItem}/>
       </div>
     );
   }

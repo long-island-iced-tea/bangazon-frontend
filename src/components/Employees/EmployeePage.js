@@ -5,17 +5,17 @@ import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
 
 class EmployeePage extends React.Component {
-  state = {
-    employees: []
-  }
 
-  employeeModel = {
-    Id: 0,
-    FirstName: '',
-    lastName: '',
-    DepartmentId: 0,
-    ComputerId: 0,
-    DepartmentName: ''
+  state = {
+    employees: [],
+    objectModel: {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      departmentId: [],
+      computerId: [],
+      departmentName: ''
+    }
   }
 
   getEmployees = () => {
@@ -44,18 +44,39 @@ class EmployeePage extends React.Component {
       .then(res => {
         this.getEmployees();
       });
-  };
+  }
+  getDepartments = () => {
+    apiAccess
+      .apiGet('department')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.departmentId = res.data.map(i => i.id);
+        this.setState({objectModel});
+      });
+  }
+  getComputers = () => {
+    apiAccess
+      .apiGet('computer')
+      .then(res => {
+        const {objectModel} = {...this.state};
+        objectModel.computerId = res.data.map(i => i.id);
+        this.setState({objectModel});
+      });
+  }
+
 
   componentDidMount () {
     this.getEmployees();
+    this.getDepartments();
+    this.getComputers();
   }
 
   render () {
     return (
       <div className='EmployeesPage'>
         <h1>Employees</h1>
-        <ResourceList resources={this.state.employees} deleteFunc={this.deleteEmployee} editFunc={this.editEmployee}/>
-        <AddItemForm objectModel={this.employeeModel} addFunc={this.addEmployee}/>
+        <ResourceList resources={this.state.employees} deleteFunc={this.deleteEmployee} editFunc={this.editEmployee} objectModel={this.state.objectModel}/>
+        <AddItemForm objectModel={this.state.objectModel} addFunc={this.addEmployee}/>
       </div>
     );
   }

@@ -26,7 +26,7 @@ class ResourceList extends React.Component {
 
     // Create ResourceItem rows
     const resourceItems = resources.map(r => {
-      return (<ResourceItem key={r.id} item={r} editFunc={editFunc} deleteFunc={deleteFunc} />);
+      return (<ResourceItem key={r.id} item={r} editFunc={editFunc} deleteFunc={deleteFunc} objectModel={this.props.objectModel} />);
     });
 
     return (

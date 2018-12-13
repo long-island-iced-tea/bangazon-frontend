@@ -1,7 +1,7 @@
 import React from 'react';
 import './ResourceItem.css';
 import PropTypes from 'prop-types';
-
+import moment from 'moment';
 
 class ResourceItem extends React.Component {
 
@@ -14,6 +14,12 @@ class ResourceItem extends React.Component {
     item: PropTypes.object.isRequired,
     editFunc: PropTypes.func.isRequired,
     deleteFunc: PropTypes.func.isRequired,
+  }
+
+  changeMoment = (e) => {
+    const { item } = { ...this.state };
+    item[e.target.id] = moment(e.target.value);
+    this.setState({ item });
   }
 
   changeValue = (e) => {
@@ -82,6 +88,14 @@ class ResourceItem extends React.Component {
       if (Array.isArray(v)) {
         return (
           <td key={i}>{'Count: ' + v.length}</td>
+        );
+      }
+      // If value is a Moment object, create a date picker
+      else if (v instanceof moment) {
+        return (
+          <td key={i}>
+            <input type="date" id={k} value={v.format('YYYY-MM-DD')} onChange={this.changeMoment} disabled={!this.state.isEditing} />
+          </td>
         );
       }
       // If value is an object, stringify it

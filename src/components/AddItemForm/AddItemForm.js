@@ -1,6 +1,7 @@
 import React from 'react';
 import './AddItemForm.css';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 class AddItemForm extends React.Component {
 
@@ -41,7 +42,10 @@ class AddItemForm extends React.Component {
         break;
 
       case 'object':
-        if (Array.isArray(objectModel[key])) {
+        if (objectModel[key] instanceof moment) {
+          type = 'date';
+        }
+        else if (Array.isArray(objectModel[key])) {
           return (
             <div className="form-group">
               <label htmlFor={key}>{key}</label>

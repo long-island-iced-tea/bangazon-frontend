@@ -55,10 +55,13 @@ class TrainingProgramPage extends React.Component {
     }
   };
 
-  handleUpcomingFilter = () => {
+  handleUpcomingFilter = (e) => {
     const allTPs = {...this.state};
-    console.log(allTPs);
-  }
+    const filteredTPs = allTPs.trainingprograms.filter((tp) => {
+      return tp.startDate.isAfter();
+      })
+      
+    };
 
   render() {
     return (

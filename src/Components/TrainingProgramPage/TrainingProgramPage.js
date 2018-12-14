@@ -65,10 +65,12 @@ class TrainingProgramPage extends React.Component {
 
   handleUpcomingFilter = (e) => {
     const allTPs = {...this.state};
-    const filteredTPs = allTPs.trainingprograms.filter((tp) => {
-      return tp.startDate.isAfter();
+    allTPs.trainingprograms.map((tp) => {
+      if (tp.startDate.isAfter() === true) {
+        console.log(tp);
+      }
+      return allTPs ;
       })
-      
     };
 
   render() {

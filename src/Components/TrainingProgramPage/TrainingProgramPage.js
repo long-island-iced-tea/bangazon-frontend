@@ -65,20 +65,30 @@ class TrainingProgramPage extends React.Component {
 
   handleUpcomingFilter = (e) => {
     const allTPs = {...this.state};
-    allTPs.trainingprograms.map((tp) => {
+    allTPs.trainingprograms.filter((tp) => {
       if (tp.startDate.isAfter() === true) {
-        console.log(tp);
+        console.log("upcoming", tp);
       }
       return allTPs ;
       })
     };
+
+    handleCompletedFilter = (e) => {
+      const allTPs = {...this.state};
+      allTPs.trainingprograms.filter((tp) => {
+        if(tp.endDate.isBefore() === true) {
+          console.log("completed", tp)
+        }
+        return allTPs;
+      })
+    }
 
   render() {
     return (
       <div className="TrainingProgramPage">
         <h1>Training Programs</h1>
         <button onClick= {this.handleUpcomingFilter} className="btn btn-secondary upcoming">Upcoming</button>
-        <button className="btn btn-secondary completed">Completed</button>
+        <button onClick={this.handleCompletedFilter} className="btn btn-secondary completed">Completed</button>
         <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editTrainingProgram}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>

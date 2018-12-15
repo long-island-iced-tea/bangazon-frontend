@@ -1,5 +1,9 @@
-.App {
+.App{
+  background-image: url(https://images.pexels.com/photos/1587/blurred-background.jpg?auto=compress&cs=tinysrgb&h=650&w=940);
+  background-size: cover;
+}
 
+.App {
   .sidebar-container {
     height: 100vh;
     overflow: auto;
@@ -9,7 +13,41 @@
     height: 100vh;
     overflow: auto;
     padding: 2em;
+
+    max-width: 100%;
   }
 
+  .header-title {
+    font-family: 'Ubuntu Mono', monospace;
+    width: 100%;
+    padding-left: 5%;
+    background-color: #17141b;
+    color: oldlace;
+  }
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .main-container{
+    width: 70%;
+    background-color: oldlace;
+    opacity: .80;
+    border-radius: 15px;
+  }
+
+  th{
+    text-transform: capitalize;
+  }
+  footer {
+    width: 100%;
+  }
+  .footer-text{
+    color: oldlace;
+    opacity: .2;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+  }
 }
 

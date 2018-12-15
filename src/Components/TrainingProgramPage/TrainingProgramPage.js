@@ -79,12 +79,18 @@ class TrainingProgramPage extends React.Component {
 
     handleCompletedFilter = (e) => {
       const allTPs = {...this.state};
+      const completed = [];
       allTPs.trainingprograms.filter((tp) => {
         if(tp.endDate.isBefore() === true) {
+          completed.push(tp)
           console.log('completed', tp);
+          this.setState({trainingprograms:completed});
         }
         return allTPs;
       })
+      if(completed.length === 0) {
+        alert("There aren't any completed training programs")
+      }
     }
 
   render() {
@@ -93,6 +99,7 @@ class TrainingProgramPage extends React.Component {
         <h1>Training Programs</h1>
         <button onClick= {this.handleUpcomingFilter} className="btn btn-secondary upcoming">Upcoming</button>
         <button onClick={this.handleCompletedFilter} className="btn btn-secondary completed">Completed</button>
+        <button onClick= {this.getAllResources} className="btn btn-secondary completed">All Training Programs</button>
         <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editTrainingProgram}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>

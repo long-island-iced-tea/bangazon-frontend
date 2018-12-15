@@ -3,7 +3,7 @@ import React from 'react';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
-
+import Alert from 'react-s-alert';
 class EmployeePage extends React.Component {
 
   state = {
@@ -35,7 +35,11 @@ class EmployeePage extends React.Component {
   }
 
   deleteEmployee = () => {
-    alert('Employees cannot be deleted.');
+    Alert.error('Employees cannot be deleted.', {
+      position: 'top-right',
+          effect: 'stackslide',
+          timeout: 4000
+    });
   }
 
   editEmployee = (newEmployee) => {

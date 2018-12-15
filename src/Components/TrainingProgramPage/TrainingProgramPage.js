@@ -1,5 +1,5 @@
 import React from 'react';
-//import './TrainingProgramPage.css';
+import './TrainingProgramPage.css';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
@@ -63,10 +63,43 @@ class TrainingProgramPage extends React.Component {
     }
   }
 
+  handleUpcomingFilter = (e) => {
+    const allTPs = {...this.state};
+    const upcoming = [];
+    allTPs.trainingprograms.filter((tp) => {
+      if (tp.startDate.isAfter() === true) {
+        upcoming.push(tp);
+        console.log('upcoming', tp);
+        this.setState({trainingprograms: upcoming});
+      }
+      return allTPs ;
+      })
+    };
+
+
+    handleCompletedFilter = (e) => {
+      const allTPs = {...this.state};
+      const completed = [];
+      allTPs.trainingprograms.filter((tp) => {
+        if(tp.endDate.isBefore() === true) {
+          completed.push(tp)
+          console.log('completed', tp);
+          this.setState({trainingprograms:completed});
+        }
+        return allTPs;
+      })
+      if(completed.length === 0) {
+        alert("There aren't any completed training programs")
+      }
+    }
+
   render() {
     return (
       <div className="TrainingProgramPage">
         <h1>Training Programs</h1>
+        <button onClick= {this.handleUpcomingFilter} className="btn btn-secondary upcoming">Upcoming</button>
+        <button onClick={this.handleCompletedFilter} className="btn btn-secondary completed">Completed</button>
+        <button onClick= {this.getAllResources} className="btn btn-secondary completed">All Training Programs</button>
         <ResourceList resources={this.state.trainingprograms} deleteFunc={this.deleteTrainingProgram} editFunc={this.editTrainingProgram}/>
         <AddItemForm objectModel={this.trainingProgramModel} addFunc={this.addTrainingProgram} />
       </div>

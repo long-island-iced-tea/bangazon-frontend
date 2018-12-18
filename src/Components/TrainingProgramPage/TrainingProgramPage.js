@@ -4,6 +4,7 @@ import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
 import moment from 'moment';
+import Alert from 'react-s-alert';
 
 class TrainingProgramPage extends React.Component {
 
@@ -55,11 +56,23 @@ class TrainingProgramPage extends React.Component {
         this.getAllResources();
       });
     } else if (newTraining.startDate.isBefore() && newTraining.endDate.isAfter()) {
-      alert("This training program is currently underway and cannot be edited.");
+      Alert.error("This training program is currently underway and cannot be edited.", {
+        position: 'top-right',
+          effect: 'stackslide',
+          timeout: 4000
+      });
     } else if (newTraining.startDate.isAfter() && newTraining.endDate.isBefore()) {
-      alert("There is something screwy about your dates.");
+      Alert.warning("There is something screwy about your dates.", {
+        position: 'top-right',
+          effect: 'stackslide',
+          timeout: 4000
+      });
     } else {
-      alert("This training program has already occured and cannot be edited.");
+      Alert.error("This training program has already occured and cannot be edited." ,{
+        position: 'top-right',
+          effect: 'stackslide',
+          timeout: 4000
+      });
     }
   }
 
@@ -89,7 +102,11 @@ class TrainingProgramPage extends React.Component {
         return allTPs;
       })
       if(completed.length === 0) {
-        alert("There aren't any completed training programs")
+        Alert.warning('There aren\'t any completed training programs!', {
+          position: 'top-right',
+          effect: 'stackslide',
+          timeout: 4000
+        });
       }
     }
 

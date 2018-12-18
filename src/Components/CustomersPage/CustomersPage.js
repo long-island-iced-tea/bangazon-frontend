@@ -3,6 +3,7 @@ import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
 import apiAccess from '../../api-access/api';
 import moment from 'moment';
+import Alert from 'react-s-alert';
 
 class customerPage extends React.Component {
     state = {
@@ -35,7 +36,11 @@ class customerPage extends React.Component {
     }
 
     deletecustomer = (id) => {
-      alert('Customers cannot be deleted.');
+      Alert.error('Customers cannot be deleted.', {
+        position: 'top-right',
+          effect: 'stackslide',
+          timeout: 4000
+      });
     }
 
   editcustomer = (newcustomer) => {

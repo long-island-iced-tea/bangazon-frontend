@@ -3,6 +3,7 @@ import React from 'react';
 import apiAccess from '../../api-access/api';
 import ResourceList from '../ResourceList/ResourceList';
 import AddItemForm from '../AddItemForm/AddItemForm';
+import Alert from 'react-s-alert';
 
 
 class DepartmentsPage extends React.Component {
@@ -37,7 +38,11 @@ class DepartmentsPage extends React.Component {
   }
 
   deleteItem = (id) => {
-    alert('This resource type cannot be deleted.');
+    Alert.error('This resource type cannot be deleted.', {
+      position: 'top-right',
+          effect: 'stackslide',
+          timeout: 4000
+    });
   }
   editDepartments = (newDepartments) => {
     apiAccess

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Alert from 'react-s-alert';
 import SideNav from '../components/SideNav/SideNav';
 import './App.css';
 import ProductsPage from '../components/ProductsPage/ProductsPage';
@@ -11,6 +12,9 @@ import ComputersPage from '../components/ComputersPage/ComputersPage';
 import OrdersPage from '../components/OrdersPage/OrdersPage';
 import DepartmentsPage from '../components/DepartmentsPage/DepartmentsPage';
 import PaymentTypePage from '../components/PaymentTypes/PaymentTypes';
+
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 
 class App extends Component {
@@ -51,6 +55,7 @@ class App extends Component {
             </div>
           </div>
         </BrowserRouter>
+        <Alert stack={{limit:3}} timeout={4000}/>
       </div>
     );
   }

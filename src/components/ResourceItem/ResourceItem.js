@@ -70,7 +70,7 @@ class ResourceItem extends React.Component {
         <td key={i}>
           {
             <div className="form-group">
-              <select id={k} className="custom-select" disabled={!this.state.isEditing}>
+              <select id={k} className="custom-select" disabled={!this.state.isEditing} onChange={this.changeValue}>
                 <option></option>
                   {
                     objectModel[k].map(item => {

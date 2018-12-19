@@ -42,7 +42,7 @@ class TrainingProgramPage extends React.Component {
   }
 
   deleteTrainingProgram = (id) => {
-    apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => alert(err.response.data.error));
+    apiAccess.apiDelete(`trainingprogram/${id}`).then(x => this.getAllResources()).catch(err => Alert.error(err.response.data.error));
   }
 
   editTrainingProgram = (newTraining) => {
